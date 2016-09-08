@@ -1,0 +1,11 @@
+new:
+  name_en: New
+  name_ua: Новий
+
+sold:
+  name_en: Sold
+  name_ua: Проданий
+
+active:
+  name_en: Active
+  name_ua: Діючий 

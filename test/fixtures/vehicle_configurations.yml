@@ -1,0 +1,7 @@
+ford_focus_sedan_comfort:
+  vehicle_bodywork: ford_focus_sedan_4doors_4seats_passenger
+  vehicle_trim_level: ford_focus_comfort
+  engine: engine_T1_9
+  gearbox: automatic
+  awd: false
+  fuel_capacity: 30

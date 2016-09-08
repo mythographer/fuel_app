@@ -1,0 +1,9 @@
+A95:
+  name_en: A95
+  name_ua: А95
+  fuel_type: petrol
+
+DF:
+  name_en: DF
+  name_ua: ДП
+  fuel_type: diesel

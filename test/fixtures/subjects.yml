@@ -1,0 +1,11 @@
+abc:
+  name_en: ABC
+  name_ua: ЕйБіСі
+
+cde:
+  name_en: CDE
+  name_ua: СіДіІ
+
+vehicle_registration_office:
+  name_en: VRO
+  name_ua: МРЕВ

@@ -1,0 +1,15 @@
+engine_T1_9:
+  capacity_l: 1.9
+  capacity_cc: 1898
+  fuel_brand: A95
+  power: 110
+  engine_power: hp
+  cylinder_count: 4
+
+engine_2_0:
+  capacity_l: 2.0
+  capacity_cc: 1997
+  fuel_brand: DF
+  power: 85
+  engine_power: hp
+  cylinder_count: 4

@@ -1,0 +1,5 @@
+ford_sedan:
+  name_en: Sedan
+  name_ua: Седан
+  vehicle_trademark: ford 
+  vehicle_body_type: sedan

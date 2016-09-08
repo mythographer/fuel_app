@@ -1,0 +1,27 @@
+one:
+  vin: 2FMZA51U0WBD53957
+  vehicle_trademark_color: pearl_black
+  metallic: false
+  vehicle_configuration: ford_focus_sedan_comfort
+  vehicle_inventory: one
+  vehicle_registration: one
+  vehicle_status: sold
+  fleet: leasing
+  cost_centre: leasing
+
+two:
+  vin: 2FMZA51U0WBD53958
+  vehicle_trademark_color: pearl_black
+  metallic: true
+  vehicle_configuration: ford_focus_sedan_comfort
+  vehicle_inventory: two
+  vehicle_registration: two
+  vehicle_status: active
+  fleet: rental
+  cost_centre: rent
+
+new_car:
+  vehicle_configuration: ford_focus_sedan_comfort
+  vehicle_trademark_color: pearl_black
+  metallic: false
+  vehicle_status: new

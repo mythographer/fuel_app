@@ -1,0 +1,9 @@
+mechanical:
+  name_en: MT
+  name_ua: МТ
+  automatic: false
+
+automatic:
+  name_en: AT
+  name_ua: АТ
+  automatic: true

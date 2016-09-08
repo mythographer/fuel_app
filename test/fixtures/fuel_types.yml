@@ -1,0 +1,9 @@
+petrol:
+  name_en: petrol
+  name_ua: бензин
+  abbr_name: p
+
+diesel:
+  name_en: diesel
+  name_ua: дизель
+  abbr_name: d 

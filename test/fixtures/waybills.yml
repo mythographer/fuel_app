@@ -1,0 +1,21 @@
+september_2016_one:
+  doc_no: 1549537
+  initial_date: 2016-09-01
+  final_date: 2016-09-30
+  vehicle: one
+  initial_mileage: 53800
+  final_mileage: 55640
+  initial_fuel: 20
+  final_fuel: 10
+  comment: 
+
+september_2016_two:
+  doc_no: 1549538
+  initial_date: 2016-09-08
+  final_date: 2016-09-10
+  vehicle: two
+  initial_mileage: 76230
+  final_mileage: 77475
+  initial_fuel: 30
+  final_fuel: 30
+  comment: there and back

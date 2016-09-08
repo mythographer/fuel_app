@@ -1,0 +1,37 @@
+one:
+  doc_series: ААА
+  doc_no: 0123456789
+  reg_date: 2000-11-21
+  vro_subject: vehicle_registration_office
+  temporary: false
+  vehicle: one
+  vin: 2FMZA51U0WBD53957
+  reg_no: AB1234CE
+  manufacture_year: 2000
+  vehicle_registration_color: red
+  vehicle_body_type:
+  total_weight:
+  engine_capacity_cc:
+  seating_capacity:
+  special_notes:
+  ext_reference:
+  without_sn: false
+
+two:
+  doc_series: ААА
+  doc_no: 0123456790
+  reg_date: 2000-11-21
+  vro_subject: vehicle_registration_office
+  temporary: false
+  vehicle: one
+  vin: 2FMZA51U0WBD53958
+  reg_no: AB1235CE
+  manufacture_year: 2000
+  vehicle_registration_color: red
+  vehicle_body_type:
+  total_weight:
+  engine_capacity_cc:
+  seating_capacity:
+  special_notes:
+  ext_reference:
+  without_sn: false

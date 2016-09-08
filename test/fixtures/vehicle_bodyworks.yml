@@ -1,0 +1,6 @@
+ford_focus_sedan_4doors_4seats_passenger:
+  vehicle_model: ford_focus
+  vehicle_mark_body_type: ford_sedan
+  doors_count: 4
+  seating_capacity: 4
+  vehicle_category: passenger

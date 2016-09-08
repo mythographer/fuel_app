@@ -1,0 +1,15 @@
+passenger:
+  name_en: Passenger
+  name_ua: Легковий
+
+truck:
+  name_en: Truck
+  name_ua: Вантажний
+
+freight:
+  name_en: Freight
+  name_ua: Вантажно-пасажирський
+
+loader:
+  name_en: Loader
+  name_ua: Навантажувач

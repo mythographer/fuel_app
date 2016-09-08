@@ -1,0 +1,11 @@
+leasing:
+  name_en: Leasing
+  name_ua: Лізин
+
+rent:
+  name_en: Rent
+  name_ua: Прокат
+
+office:
+  name_en: Office
+  name_ua: Офіс 
