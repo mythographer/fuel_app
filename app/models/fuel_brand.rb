@@ -1,6 +1,6 @@
 class FuelBrand < ApplicationRecord
   has_many :engines
-  has_many :filling_station_checks
+  has_many :checks
 
   belongs_to :fuel_type
 
@@ -8,5 +8,4 @@ class FuelBrand < ApplicationRecord
                       uniqueness: { case_sensitive: false }
   validates :name_ua, length: { maximum: 10 }, presence: true,
                       uniqueness: { case_sensitive: false }
-  validates :fuel_type, presence: true
 end

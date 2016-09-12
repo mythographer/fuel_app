@@ -6,13 +6,17 @@ class VehicleTest < ActiveSupport::TestCase
   end
 
   test 'responds to vin, vehicle_configuration, vehicle_registration,
-        vehicle_trademark_color, metallic, fleet, vehicle_status, cost_centre,
-        vehicle_inventory' do
-    [:vin, :vehicle_configuration, :vehicle_registration,
-     :vehicle_trademark_color, :metallic, :fleet, :vehicle_status,
-     :cost_centre, :vehicle_inventory].each do |attr|
-       assert_respond_to @vehicle, attr
-     end
+    vehicle_trademark_color, metallic, fleet, vehicle_status, cost_centre,
+    vehicle_inventory' do
+    assert_respond_to @vehicle, :vin 
+    assert_respond_to @vehicle, :vehicle_configuration
+    assert_respond_to @vehicle, :vehicle_registration
+    assert_respond_to @vehicle, :vehicle_trademark_color
+    assert_respond_to @vehicle, :metallic
+    assert_respond_to @vehicle, :fleet
+    assert_respond_to @vehicle, :vehicle_status
+    assert_respond_to @vehicle, :cost_centre
+    assert_respond_to @vehicle, :vehicle_inventory
   end
 
   test 'should be valid' do
@@ -47,14 +51,12 @@ class VehicleTest < ActiveSupport::TestCase
     @vehicle.vehicle_configuration = nil
     assert_not @vehicle.valid?
     assert_includes @vehicle.errors[:vehicle_configuration], 'must exist'
-    assert_includes @vehicle.errors[:vehicle_configuration], "can't be blank"
   end
 
   test 'trademark color should be present' do
     @vehicle.vehicle_trademark_color = nil
     assert_not @vehicle.valid?
     assert_includes @vehicle.errors[:vehicle_trademark_color], 'must exist'
-    assert_includes @vehicle.errors[:vehicle_trademark_color], "can't be blank"
   end
 
   test 'metallic flag value should be present' do
@@ -67,7 +69,6 @@ class VehicleTest < ActiveSupport::TestCase
     @vehicle.vehicle_status = nil
     assert_not @vehicle.valid?
     assert_includes @vehicle.errors[:vehicle_status], 'must exist'
-    assert_includes @vehicle.errors[:vehicle_status], "can't be blank"
   end
 
   test 'registration record should be unique' do

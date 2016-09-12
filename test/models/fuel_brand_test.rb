@@ -6,9 +6,9 @@ class FuelBrandTest < ActiveSupport::TestCase
   end
 
   test 'responds to name_en, name_ua, fuel_type' do
-    [:name_en, :name_ua, :fuel_type].each do |attr|
-      assert_respond_to @A95, attr
-    end
+    assert_respond_to @A95, :name_en
+    assert_respond_to @A95, :name_ua
+    assert_respond_to @A95, :fuel_type
   end
 
   # Validations.
@@ -60,6 +60,6 @@ class FuelBrandTest < ActiveSupport::TestCase
   test 'fuel type should be present' do
     @A95.fuel_type = nil
     assert_not @A95.valid?
-    assert_includes @A95.errors[:fuel_type], "can't be blank"
+    assert_includes @A95.errors[:fuel_type], 'must exist'
   end
 end
