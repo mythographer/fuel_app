@@ -2,3 +2,4 @@ strong_0123456789:
   card_no: 0123456789
   notes: Some text
   fuel_card_brand: strong 
+  fuel_card_status: active

@@ -1,8 +1,9 @@
 one:
   check_no:
   check_datetime: 2016-09-05 13:18:27
+  check_status: new
   fuel_card: strong_0123456789
-  fuel_brand: A95
+  product: petrol_a95
   quantity: 9.99
   unit_price: 9.99
   total_vat: 9.99

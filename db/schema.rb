@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908071151) do
+ActiveRecord::Schema.define(version: 20160912074912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_statuses", force: :cascade do |t|
+    t.string   "name",        limit: 30, null: false
+    t.text     "description"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["name"], name: "index_check_statuses_on_name", unique: true, using: :btree
+  end
+
+  create_table "checks", force: :cascade do |t|
+    t.string   "check_no",                limit: 20
+    t.datetime "check_datetime",                                               null: false
+    t.integer  "fuel_card_id"
+    t.decimal  "quantity",                            precision: 6,  scale: 2, null: false
+    t.decimal  "unit_price",                          precision: 15, scale: 2, null: false
+    t.decimal  "total_vat",                           precision: 15, scale: 2, null: false
+    t.integer  "waybill_id"
+    t.integer  "mileage"
+    t.integer  "vehicle_id"
+    t.text     "comment"
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.integer  "product_id",                                                   null: false
+    t.integer  "check_status_id",                                              null: false
+    t.string   "filling_station_address", limit: 255
+    t.integer  "fuel_supplier_report_id"
+    t.index ["check_status_id"], name: "index_checks_on_check_status_id", using: :btree
+    t.index ["fuel_card_id"], name: "index_checks_on_fuel_card_id", using: :btree
+    t.index ["fuel_supplier_report_id"], name: "index_checks_on_fuel_supplier_report_id", using: :btree
+    t.index ["product_id"], name: "index_checks_on_product_id", using: :btree
+    t.index ["vehicle_id"], name: "index_checks_on_vehicle_id", using: :btree
+    t.index ["waybill_id"], name: "index_checks_on_waybill_id", using: :btree
+  end
 
   create_table "cost_centres", force: :cascade do |t|
     t.string   "name_en",    limit: 30, null: false
@@ -74,34 +107,34 @@ ActiveRecord::Schema.define(version: 20160908071151) do
     t.index ["brand_name"], name: "index_fuel_card_brands_on_brand_name", unique: true, using: :btree
   end
 
-  create_table "fuel_cards", force: :cascade do |t|
-    t.string   "card_no",            limit: 50, null: false
-    t.integer  "fuel_card_brand_id",            null: false
-    t.text     "notes"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.index ["fuel_card_brand_id", "card_no"], name: "index_fuel_cards_on_fuel_card_brand_id_and_card_no", unique: true, using: :btree
-    t.index ["fuel_card_brand_id"], name: "index_fuel_cards_on_fuel_card_brand_id", using: :btree
+  create_table "fuel_card_statuses", force: :cascade do |t|
+    t.string   "name_ua",     limit: 30, null: false
+    t.text     "description"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["name_ua"], name: "index_fuel_card_statuses_on_name_ua", unique: true, using: :btree
   end
 
-  create_table "fuel_checks", force: :cascade do |t|
-    t.string   "check_no",       limit: 20
-    t.datetime "check_datetime",                                     null: false
-    t.integer  "fuel_card_id"
-    t.integer  "fuel_brand_id",                                      null: false
-    t.decimal  "quantity",                  precision: 6,  scale: 2, null: false
-    t.decimal  "unit_price",                precision: 15, scale: 2, null: false
-    t.decimal  "total_vat",                 precision: 15, scale: 2, null: false
-    t.integer  "waybill_id"
-    t.integer  "mileage"
-    t.integer  "vehicle_id"
-    t.text     "comment"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.index ["fuel_brand_id"], name: "index_fuel_checks_on_fuel_brand_id", using: :btree
-    t.index ["fuel_card_id"], name: "index_fuel_checks_on_fuel_card_id", using: :btree
-    t.index ["vehicle_id"], name: "index_fuel_checks_on_vehicle_id", using: :btree
-    t.index ["waybill_id"], name: "index_fuel_checks_on_waybill_id", using: :btree
+  create_table "fuel_cards", force: :cascade do |t|
+    t.string   "card_no",             limit: 50, null: false
+    t.integer  "fuel_card_brand_id",             null: false
+    t.text     "notes"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "fuel_card_status_id",            null: false
+    t.index ["fuel_card_brand_id", "card_no"], name: "index_fuel_cards_on_fuel_card_brand_id_and_card_no", unique: true, using: :btree
+    t.index ["fuel_card_brand_id"], name: "index_fuel_cards_on_fuel_card_brand_id", using: :btree
+    t.index ["fuel_card_status_id"], name: "index_fuel_cards_on_fuel_card_status_id", using: :btree
+  end
+
+  create_table "fuel_supplier_reports", force: :cascade do |t|
+    t.integer  "fuel_card_brand_id", null: false
+    t.datetime "start_date",         null: false
+    t.datetime "end_date"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["fuel_card_brand_id", "start_date"], name: "uk_fuel_supplier_reports", unique: true, using: :btree
+    t.index ["fuel_card_brand_id"], name: "index_fuel_supplier_reports_on_fuel_card_brand_id", using: :btree
   end
 
   create_table "fuel_types", force: :cascade do |t|
@@ -123,6 +156,22 @@ ActiveRecord::Schema.define(version: 20160908071151) do
     t.datetime "updated_at",                            null: false
     t.index ["name_en"], name: "index_gearboxes_on_name_en", unique: true, using: :btree
     t.index ["name_ua"], name: "index_gearboxes_on_name_ua", unique: true, using: :btree
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name_ua",    limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["name_ua"], name: "index_products_on_name_ua", unique: true, using: :btree
+  end
+
+  create_table "products_fuel_brands", force: :cascade do |t|
+    t.integer  "product_id",    null: false
+    t.integer  "fuel_brand_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["fuel_brand_id"], name: "index_products_fuel_brands_on_fuel_brand_id", using: :btree
+    t.index ["product_id"], name: "index_products_fuel_brands_on_product_id", unique: true, using: :btree
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -334,14 +383,20 @@ ActiveRecord::Schema.define(version: 20160908071151) do
     t.index ["vehicle_id"], name: "index_waybills_on_vehicle_id", using: :btree
   end
 
+  add_foreign_key "checks", "check_statuses"
+  add_foreign_key "checks", "fuel_cards"
+  add_foreign_key "checks", "fuel_supplier_reports"
+  add_foreign_key "checks", "products"
+  add_foreign_key "checks", "vehicles"
+  add_foreign_key "checks", "waybills"
   add_foreign_key "engines", "engine_powers"
   add_foreign_key "engines", "fuel_brands"
   add_foreign_key "fuel_brands", "fuel_types"
   add_foreign_key "fuel_cards", "fuel_card_brands"
-  add_foreign_key "fuel_checks", "fuel_brands"
-  add_foreign_key "fuel_checks", "fuel_cards"
-  add_foreign_key "fuel_checks", "vehicles"
-  add_foreign_key "fuel_checks", "waybills"
+  add_foreign_key "fuel_cards", "fuel_card_statuses"
+  add_foreign_key "fuel_supplier_reports", "fuel_card_brands"
+  add_foreign_key "products_fuel_brands", "fuel_brands"
+  add_foreign_key "products_fuel_brands", "products"
   add_foreign_key "vehicle_bodyworks", "vehicle_categories"
   add_foreign_key "vehicle_bodyworks", "vehicle_mark_body_types"
   add_foreign_key "vehicle_bodyworks", "vehicle_models"

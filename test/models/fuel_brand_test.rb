@@ -11,6 +11,8 @@ class FuelBrandTest < ActiveSupport::TestCase
     end
   end
 
+  # Validations.
+
   test 'should be valid' do
     assert @A95.valid?
   end

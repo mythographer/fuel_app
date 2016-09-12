@@ -6,12 +6,35 @@ class WaybillTest < ActiveSupport::TestCase
   end
 
   test 'responds to doc_no, initial_date, final_date, vehicle,
-       initial_mileage, final_mileage, initial_fuel, final_fuel, comment' do
-    [:doc_no, :initial_date, :final_date, :vehicle, :initial_mileage,
-     :final_mileage, :initial_fuel, :final_fuel, :comment].each do |attr|
-      assert_respond_to @waybill, attr
-    end
+    initial_mileage, final_mileage, initial_fuel, final_fuel, comment' do
+    assert_respond_to @waybill, :doc_no
+    assert_respond_to @waybill, :initial_date
+    assert_respond_to @waybill, :final_date
+    assert_respond_to @waybill, :vehicle
+    assert_respond_to @waybill, :initial_mileage
+    assert_respond_to @waybill, :final_mileage
+    assert_respond_to @waybill, :initial_fuel
+    assert_respond_to @waybill, :final_fuel
+    assert_respond_to @waybill, :comment
   end
+
+  # Associations.
+
+  test 'should have zero or more checks' do
+    refl = Waybill.reflect_on_association :checks
+    assert_not_nil refl
+    assert_equal refl.macro, :has_many
+    assert_equal refl.options[:dependent], :nullify
+  end
+
+  test 'should belong to vehicle' do
+    refl = Waybill.reflect_on_association(:vehicle)
+    assert_not_nil refl
+    assert_equal refl.macro, :belongs_to
+    assert refl.options, {}
+  end
+
+  # Validations.
 
   test 'documen number should be present' do
     @waybill.doc_no = nil

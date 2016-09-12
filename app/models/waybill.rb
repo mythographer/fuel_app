@@ -1,7 +1,7 @@
 class Waybill < ApplicationRecord
+  has_many :checks, dependent: :nullify
+  
   belongs_to :vehicle
-
-  has_many :fuel_checks, dependent: :destroy #:nullify ?
 
   validates :doc_no, length: { maximum: 10 }, presence: true,
                      uniqueness: { case_sensitive: false }
@@ -14,6 +14,6 @@ class Waybill < ApplicationRecord
   validates :final_fuel, presence: true
   validates :comment, length: { maximum: 255 }
 
-  accepts_nested_attributes_for :fuel_checks, reject_if: :all_blank,
-                                              allow_destroy: true
+  accepts_nested_attributes_for :checks, reject_if: :all_blank,
+    allow_destroy: true
 end

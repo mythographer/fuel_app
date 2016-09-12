@@ -1,0 +1,9 @@
+one:
+  fuel_card_brand: strong
+  start_date: 2016-09-12
+  end_date: 2016-09-12
+
+two:
+  fuel_card_brand: smart
+  start_date: 2016-09-12
+  end_date: 2016-09-30

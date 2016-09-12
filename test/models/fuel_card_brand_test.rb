@@ -11,6 +11,17 @@ class FuelCardBrandTest < ActiveSupport::TestCase
     end
   end
 
+  # Associations.
+
+  test 'should have zero or more fuel cards' do
+    refl = FuelCardBrand.reflect_on_association(:fuel_cards)
+    assert_not_nil refl
+    assert_equal refl.macro, :has_many
+    assert_equal refl.options, {}
+  end
+
+  # Validations.
+
   test 'should be valid' do
     assert @strong.valid?
   end

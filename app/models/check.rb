@@ -1,12 +1,14 @@
-class FuelCheck < ApplicationRecord
+class Check < ApplicationRecord
+  belongs_to :check_status
   belongs_to :fuel_card, optional: true
-  belongs_to :fuel_brand
+  belongs_to :product
   belongs_to :waybill, optional: true
   belongs_to :vehicle, optional: true
+  belongs_to :fuel_supplier_report, optional: true
 
   validates :check_no, length: { maximum: 20 }
   validates :check_datetime, presence: true
-  validates :fuel_brand, presence: true
+  validates :filling_station_address, length: { maximum: 255 }
   validates :quantity, numericality: { greater_than: 0.0 }, presence: true
   validates :unit_price, numericality: { greater_than: 0.0 }, presence: true
   validates :total_vat, numericality: { greater_than: 0.0 }, presence: true

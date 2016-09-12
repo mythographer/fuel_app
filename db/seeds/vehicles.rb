@@ -5,7 +5,7 @@ tm_colors = VehicleTrademarkColor.all
 statuses = VehicleStatus.all
 100.times do |n|
   Vehicle.create(
-    vin: 'ABC' + Faker::Number.number(14),
+    vin:  'ABC' + Faker::Number.number(14), # Faker::Vehicle.vin,
     vehicle_registration: nil,
     vehicle_configuration: vehicle_configurations[rand(0...vehicle_configurations.size)],
     vehicle_trademark_color: tm_colors[rand(0...tm_colors.size)],

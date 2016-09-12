@@ -6,10 +6,35 @@ class FuelCardTest < ActiveSupport::TestCase
   end
 
   test 'responds to card_no, fuel_card_brand, notes' do
-    [:card_no, :fuel_card_brand, :notes].each do |attr|
-      assert_respond_to @fuel_card, attr
-    end
+    assert_respond_to @fuel_card, :card_no
+    assert_respond_to @fuel_card, :fuel_card_brand
+    assert_respond_to @fuel_card, :notes 
   end
+
+  # Associations.
+
+  test 'should have zero or more filling station checks' do
+    refl = FuelCard.reflect_on_association :checks
+    assert_not_nil refl
+    assert_equal refl.macro, :has_many
+    assert_equal refl.options, {}
+  end
+
+  test 'should belong to fuel card brand' do
+    refl = FuelCard.reflect_on_association :fuel_card_brand
+    assert_not_nil refl
+    assert_equal refl.macro, :belongs_to
+    assert_equal refl.options, {}
+  end
+
+  test 'should belong to fuel card status' do
+    refl = FuelCard.reflect_on_association :fuel_card_status
+    assert_not_nil refl
+    assert_equal refl.macro, :belongs_to
+    assert_equal refl.options, {}
+  end
+
+  # Validations.
 
   test 'should be valid' do
     assert @fuel_card.valid?
