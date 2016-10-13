@@ -1,0 +1,2 @@
+module FuelCardBrandsHelper
+end

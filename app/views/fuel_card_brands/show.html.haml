@@ -1,0 +1,12 @@
+- provide(:title, @fuel_card_brand.brand_name)
+%h1 Show fuel card brand
+%p#fuel_card_brand= notice
+%p
+  %strong ID:
+  = @fuel_card_brand.id
+%p
+  %strong Name:
+  = @fuel_card_brand.brand_name
+  = link_to 'Edit', edit_fuel_card_brand_path(@fuel_card_brand)
+  |
+  = link_to 'Back', fuel_card_brands_path
