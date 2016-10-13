@@ -1,0 +1,21 @@
+= form_for fuel_card do |f|
+  = render partial: 'shared/error_messages', locals: { object: @fuel_card }
+
+  = f.label :id
+  = f.text_field :id, disabled: true
+
+  = f.label :card_no
+  = f.text_field :card_no, size: 50
+
+  = f.label :fuel_card_brand_id
+  = f.select :fuel_card_brand_id, @fuel_card_brand_list,
+    { prompt: 'Select brand' }
+
+  = f.label :fuel_card_status_id
+  = f.select :fuel_card_status_id, @fuel_card_status_list,
+    { prompt: 'Select status' }
+
+  = f.label :notes
+  = f.text_area :notes, rows: 3
+
+  = f.submit

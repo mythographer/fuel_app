@@ -1,0 +1,20 @@
+%h1 Show fuel card
+%p#fuel_card= notice
+%p
+  %strong ID:
+  = @fuel_card.id
+%p
+  %strong Card No:
+  = @fuel_card.card_no
+%p
+  %strong Brand Name:
+  = @fuel_card.fuel_card_brand.brand_name
+%p
+  %strong Card Status:
+  = @fuel_card.fuel_card_status.name_ua
+%p
+  %strong Notes:
+  = @fuel_card.notes
+%p
+  = link_to 'Edit', edit_fuel_card_path(@fuel_card)
+  = link_to 'Back', fuel_cards_path

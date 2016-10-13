@@ -1,0 +1,25 @@
+%h1 Listing fuel cards
+
+%p
+  = link_to 'New fuel card', new_fuel_card_path
+
+%table
+  %thead
+    %tr
+      %th ID
+      %th Card No
+      %th Brand Name
+      %th Card Status
+      %th Notes
+      %th{colspan: 4}
+  %tbody
+    - @fuel_cards.each do |fuel_card|
+      %tr
+        %td= link_to fuel_card.id, edit_fuel_card_path(fuel_card)
+        %td= fuel_card.card_no
+        %td= fuel_card.brand_name
+        %td= fuel_card.status_name
+        %td= fuel_card.notes
+        %td= link_to 'Show', fuel_card_path(fuel_card)
+        %td= link_to 'Destroy', fuel_card_path(fuel_card), method: :delete, |
+            data: { confirm: 'Are you sure?' }

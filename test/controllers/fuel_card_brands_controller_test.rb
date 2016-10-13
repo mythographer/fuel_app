@@ -2,10 +2,8 @@ require 'test_helper'
 
 class FuelCardBrandsControllerTest < ActionDispatch::IntegrationTest
   test 'should get fuel card brand list' do
-    #get fuel_card_brands_url
-    get '/fuel_card_brands/index'
+    get fuel_card_brands_url
     assert_response :success
-    puts fuel_card_brands_url 
   end
 
   test 'should get new fuel card brand' do
