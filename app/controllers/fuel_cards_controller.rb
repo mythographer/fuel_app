@@ -4,7 +4,7 @@ class FuelCardsController < ApplicationController
   before_action :set_fuel_card_status_list, only: [:new, :edit, :create]
 
   def index
-    @fuel_cards = FuelCard.all_with_joins
+    @fuel_cards = FuelCard.all_with_joins.paginate(page: params[:page])
   end
 
   def show
