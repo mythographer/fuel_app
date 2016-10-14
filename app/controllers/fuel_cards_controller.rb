@@ -52,10 +52,10 @@ class FuelCardsController < ApplicationController
     end
 
     def set_fuel_card_brand_list
-      @fuel_card_brand_list = FuelCard.fuel_card_brand_list
+      @fuel_card_brand_list = helpers.fuel_card_brand_list
     end
 
     def set_fuel_card_status_list
-      @fuel_card_status_list = FuelCard.fuel_card_status_list
+      @fuel_card_status_list = helpers.fuel_card_status_list
     end
 end

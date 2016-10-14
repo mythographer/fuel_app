@@ -55,14 +55,14 @@ class ChecksController < ApplicationController
     end
 
     def set_fuel_card_list
-      @fuel_card_list = Check.fuel_card_list
+      @fuel_card_list = helpers.fuel_card_list
     end
 
     def set_product_list
-      @product_list = Check.product_list
+      @product_list = helpers.product_list
     end
 
     def set_check_status_list
-      @check_status_list = Check.check_status_list
+      @check_status_list = helpers.check_status_list
     end
 end

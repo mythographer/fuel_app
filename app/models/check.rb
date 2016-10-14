@@ -48,16 +48,4 @@ class Check < ApplicationRecord
       .merge(VehicleModel.select('"vehicle_models"."name_en" as "vehicle_model"'))
       .merge(VehicleTrademark.select('"vehicle_trademarks"."name_en" as "vehicle_make"'))
   end
-
-  def self.fuel_card_list
-    FuelCard.order(card_no: :asc).pluck(:card_no, :id)
-  end
-
-  def self.product_list
-    Product.order(name_ua: :asc).pluck(:name_ua, :id)
-  end
-
-  def self.check_status_list
-    CheckStatus.order(name: :asc).pluck(:name, :id)
-  end
 end

@@ -21,12 +21,4 @@ class FuelCard < ApplicationRecord
       .merge(FuelCardStatus.select('"fuel_card_statuses"."name_ua" as "status_name"'))
       .reverse_chronological
   end
-
-  def self.fuel_card_brand_list
-    FuelCardBrand.order(brand_name: :asc).pluck(:brand_name, :id)
-  end
-
-  def self.fuel_card_status_list
-    FuelCardStatus.order(name_ua: :asc).pluck(:name_ua, :id)
-  end
 end
