@@ -1,0 +1,34 @@
+= form_for check do |f|
+  = render partial: 'shared/error_messages', locals: { object: @check }
+
+  = f.label :id
+  = f.text_field :id, disabled: true
+
+  = f.label :fuel_card_id
+  = f.select :fuel_card_id, @fuel_card_list, { prompt: 'Select fuel card' }
+
+  = f.label :check_datetime
+  = f.datetime_field :check_datetime
+
+  = f.label :filling_station_address
+  = f.text_field :filling_station_address
+
+  = f.label :product_id
+  = f.select :product_id, @product_list, { prompt: 'Select product' }
+
+  = f.label :quantity
+  = f.text_field :quantity
+
+  = f.label :unit_price
+  = f.text_field :unit_price
+
+  = f.label :total_vat
+  = f.text_field :total_vat
+
+  = f.label :check_status_id
+  = f.select :check_status_id, @check_status_list, { prompt: 'Select check status' }
+
+  = f.label :comment
+  = f.text_area :comment
+
+  = f.submit
