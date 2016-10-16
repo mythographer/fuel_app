@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'date_validator'
 gem 'haml-rails', '~> 0.9'
 gem 'will_paginate', '~> 3.1.3'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
