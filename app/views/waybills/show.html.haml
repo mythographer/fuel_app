@@ -1,0 +1,26 @@
+%h1 Show waybill
+%p#waybill= notice
+%p
+  %strong ID:
+  = @waybill.id
+%p
+  %strong Waybill No:
+  = @waybill.doc_no
+%p
+  %strong Initial Date:
+  = @waybill.initial_date
+%p
+  %strong Final Date:
+  = @waybill.final_date
+%p
+  %strong Car Reg. No:
+  = @waybill.vehicle.vehicle_registration.reg_no
+%p
+  %strong Car configuration
+  = #todo
+%p
+  %strong TODO: Add fields
+
+%p
+  = link_to 'Edit', edit_waybill_path(@waybill)
+  = link_to 'Back', waybills_path

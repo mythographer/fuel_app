@@ -30,7 +30,7 @@ class ChecksController < ApplicationController
 
   def update
     if @check.update check_params
-      redirect_to @check, notice: 'Check was successfully created.'
+      redirect_to @check, notice: 'Check was successfully updated.'
     else
       render :edit
     end
