@@ -1,10 +1,9 @@
 %h1 Listing checks
 
-%p
-  = link_to 'New check', new_check_path
+%p= link_to 'New check', new_check_path
 
-%p
-  = will_paginate @checks
+= will_paginate @checks
+
 %table
   %thead
     %tr
@@ -53,3 +52,5 @@
         %td= link_to 'Show', check_path(check)
         %td= link_to 'Destroy', check_path(check), method: :delete, |
           data: { confirm: 'Are you sure?' }
+
+= will_paginate @checks

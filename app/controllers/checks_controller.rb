@@ -5,7 +5,7 @@ class ChecksController < ApplicationController
   before_action :set_check_status_list, only: [:new, :edit, :create]
 
   def index
-    @checks = Check.all_with_joins.paginate(page: params[:page])
+    @checks = Check.all_with_joins.page(params[:page])
   end
 
   def show

@@ -2,7 +2,7 @@ class FuelCardBrandsController < ApplicationController
   before_action :set_fuel_card_brand, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fuel_card_brands = FuelCardBrand.all
+    @fuel_card_brands = FuelCardBrand.all.page(params[:page])
   end
 
   def show

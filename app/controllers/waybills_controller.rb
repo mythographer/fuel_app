@@ -2,8 +2,7 @@ class WaybillsController < ApplicationController
   before_action :set_waybill, only: [:show, :edit, :update, :destroy]
 
   def index
-    @waybills = Waybill.all.chronological.reverse_order.
-      paginate(page: params[:page])
+    @waybills = Waybill.all.chronological.reverse_order.page(params[:page])
   end
 
   def show
