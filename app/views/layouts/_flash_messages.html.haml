@@ -1,0 +1,7 @@
+- flash.each do |message_type, message|
+  .alert.alert-dismissible{class: "alert-#{message_type}", role: 'alert'}
+    %span.glyphicon{class: "#{bootstrap_gliphicon_sign_for(message_type)}", 'aria-hidden': 'true'}
+    %span.sr-only Error:
+    %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'Close'}
+      %span{'aria-hidden': 'true'} &times;
+    = message
