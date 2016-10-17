@@ -8,6 +8,10 @@ class FuelCardsController < ApplicationController
   end
 
   def show
+    if @fuel_card.nil?
+      flash[:warning] = 'Fuel card was not found.'
+      redirect_to fuel_cards_url
+    end
   end
 
   def new
@@ -21,7 +25,8 @@ class FuelCardsController < ApplicationController
     @fuel_card = FuelCard.new fuel_card_params
 
     if @fuel_card.save
-      redirect_to @fuel_card, notice: 'Fuel card was successfully created.'
+      flash[:success] = 'Fuel card was created.'
+      redirect_to @fuel_card
     else
       render :new
     end
@@ -29,7 +34,8 @@ class FuelCardsController < ApplicationController
 
   def update
     if @fuel_card.update fuel_card_params
-      redirect_to @fuel_card, notice: 'Fuel card was successfully created.'
+      flash[:success] = 'Fuel card was updated.'
+      redirect_to @fuel_card
     else
       render :edit
     end
@@ -37,13 +43,14 @@ class FuelCardsController < ApplicationController
 
   def destroy
     @fuel_card.destroy
-    redirect_to fuel_cards_url, notice: 'Fuel card was successfully destroyed.'
+    flash[:info] = 'Fuel card was deleted.'
+    redirect_to fuel_cards_url
   end
 
   private
 
     def set_fuel_card
-      @fuel_card = FuelCard.find(params[:id])
+      @fuel_card = FuelCard.find_by(id: params[:id])
     end
 
     def fuel_card_params

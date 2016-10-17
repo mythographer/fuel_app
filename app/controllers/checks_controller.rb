@@ -9,6 +9,10 @@ class ChecksController < ApplicationController
   end
 
   def show
+    if @check.nil?
+      flash[:warning] = 'Fill-up was not found.'
+      redirect_to checks_url
+    end
   end
 
   def new
@@ -22,7 +26,8 @@ class ChecksController < ApplicationController
     @check = Check.new check_params
 
     if @check.save
-      redirect_to @check, notice: 'Check was successfully created.'
+      flash[:success] = 'Fill-up was created.'
+      redirect_to @check
     else
       render :new
     end
@@ -30,7 +35,8 @@ class ChecksController < ApplicationController
 
   def update
     if @check.update check_params
-      redirect_to @check, notice: 'Check was successfully updated.'
+      flash[:success] = 'Fill-up was updated.'
+      redirect_to @check
     else
       render :edit
     end
@@ -38,13 +44,14 @@ class ChecksController < ApplicationController
 
   def destroy
     @check.destroy
-    redirect_to checks_url, notice: 'Check was successfully destroyed.'
+    flash[:info] = 'Fill-up was deleted.'
+    redirect_to checks_url
   end
 
   private
 
     def set_check
-      @check = Check.find(params[:id])
+      @check = Check.find_by(id: params[:id])
     end
 
     def check_params

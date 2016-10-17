@@ -6,6 +6,10 @@ class WaybillsController < ApplicationController
   end
 
   def show
+    if @waybill.nil?
+      flash[:warning] = 'Waybill was not found.'
+      redirect_to waybills_url
+    end
   end
 
   def new
@@ -19,7 +23,8 @@ class WaybillsController < ApplicationController
     @waybill = Waybill.new waybill_params
 
     if @waybill.save
-      redirect_to @waybill, notice: 'Waybill was successfully created.'
+      flash[:success] = 'Waybill was created.'
+      redirect_to @waybill
     else
       render :new
     end
@@ -27,7 +32,8 @@ class WaybillsController < ApplicationController
 
   def update
     if @waybill.update waybill_params
-      redirect_to @waybill, notice: 'Waybill was successfully updated.'
+      flash[:success] = 'Waybill was updated.'
+      redirect_to @waybill
     else
       render :edit
     end
@@ -35,13 +41,14 @@ class WaybillsController < ApplicationController
 
   def destroy
     @waybill.destroy
-    redirect_to waybill_url, notice: 'Waybill was successfully destroyed.'
+    flash[:info] = 'Waybill was deleted.'
+    redirect_to waybill_url
   end
 
   private
 
     def set_waybill
-      @waybill = Waybill.find(params[:id])
+      @waybill = Waybill.find_by(id: params[:id])
     end
 
     def waybill_params
