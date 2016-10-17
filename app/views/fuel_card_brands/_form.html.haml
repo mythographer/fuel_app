@@ -2,4 +2,4 @@
   = render partial: 'shared/error_messages', locals: { object: @fuel_card_brand }
   = f.label :brand_name
   = f.text_field :brand_name, size: 50
-  = f.submit
+  = f.submit yield(:button_text)
