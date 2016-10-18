@@ -1,37 +1,37 @@
-= form_for fill_up do |f|
-  = render partial: 'shared/error_messages', locals: { object: fill_up }
+= form_for @fill_up do |f|
+  = render partial: 'shared/error_messages', locals: { object: @fill_up }
 
   = f.label :id
-  = f.text_field :id, disabled: true
+  = f.text_field :id, class: 'form-control', disabled: true
 
   = f.label :fuel_card_id
-  = f.select :fuel_card_id, @fuel_card_list, { prompt: 'Select fuel card' }
+  = f.select :fuel_card_id, @fuel_card_list, { prompt: 'Select fuel card' }, class: 'form-control'
 
   = f.label :fill_up_datetime
-  = f.datetime_field :fill_up_datetime
+  = f.datetime_field :fill_up_datetime, class: 'form-control'
 
   = f.label :filling_station_address
-  = f.text_field :filling_station_address
+  = f.text_field :filling_station_address, class: 'form-control'
 
   = f.label :product_id
-  = f.select :product_id, @product_list, { prompt: 'Select product' }
+  = f.select :product_id, @product_list, { prompt: 'Select product' }, class: 'form-control'
 
   = f.label :quantity
-  = f.text_field :quantity
+  = f.text_field :quantity, class: 'form-control'
 
   = f.label :unit_price
-  = f.text_field :unit_price
+  = f.text_field :unit_price, class: 'form-control'
 
   = f.label :total_vat
-  = f.text_field :total_vat
+  = f.text_field :total_vat, class: 'form-control'
 
   = f.label :fill_up_status_id
-  = f.select :fill_up_status_id, @fill_up_status_list, { prompt: 'Select fill-up status' }
+  = f.select :fill_up_status_id, @fill_up_status_list, { prompt: 'Select fill-up status' }, class: 'form-control'
 
   = f.label :odometer
-  = f.text_field :odometer
+  = f.text_field :odometer, class: 'form-control'
 
   = f.label :comment
-  = f.text_area :comment
+  = f.text_area :comment, class: 'form-control'
 
   = f.submit yield(:button_text), class: 'btn btn-primary'

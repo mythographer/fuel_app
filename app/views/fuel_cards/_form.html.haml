@@ -2,20 +2,20 @@
   = render partial: 'shared/error_messages', locals: { object: @fuel_card }
 
   = f.label :id
-  = f.text_field :id, disabled: true
+  = f.text_field :id, disabled: true, class: 'form-control'
 
   = f.label :card_no
-  = f.text_field :card_no, size: 50
+  = f.text_field :card_no, size: 50, class: 'form-control'
 
   = f.label :fuel_card_brand_id
   = f.select :fuel_card_brand_id, @fuel_card_brand_list,
-    { prompt: 'Select brand' }
+    { prompt: 'Select brand' }, class: 'form-control'
 
   = f.label :fuel_card_status_id
   = f.select :fuel_card_status_id, @fuel_card_status_list,
-    { prompt: 'Select status' }
+    { prompt: 'Select status' }, class: 'form-control'
 
   = f.label :notes
-  = f.text_area :notes, rows: 3
+  = f.text_area :notes, rows: 3, class: 'form-control'
 
   = f.submit yield(:button_text), class: 'btn btn-primary'
