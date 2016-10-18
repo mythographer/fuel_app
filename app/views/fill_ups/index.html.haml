@@ -15,7 +15,7 @@
       %th Quantity
       %th Price
       %th Amount
-      %th Mileage
+      %th Odometer
       %th License #
       %th Make and Model
       %th VIN
@@ -30,13 +30,13 @@
       %tr
         %td= link_to fill_up.id, edit_fill_up_path(fill_up)
         %td= fill_up.card_no
-        %td= fill_up.check_datetime.to_formatted_s(:db)
+        %td= fill_up.fill_up_datetime.to_formatted_s(:db)
         %td= fill_up.filling_station_address
         %td= fill_up.product_name
         %td= number_with_precision(fill_up.quantity, precision: 2)
         %td= number_to_currency(fill_up.unit_price, precision: 2, unit: '')
         %td= number_to_currency(fill_up.total_amount_vat_included, precision: 2, unit: '')
-        %td= fill_up.mileage
+        %td= fill_up.odometer
         %td= fill_up.reg_no
         %td
           - if fill_up.vehicle_id.present?

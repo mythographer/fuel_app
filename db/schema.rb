@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018182557) do
+ActiveRecord::Schema.define(version: 20161018191406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,22 +57,22 @@ ActiveRecord::Schema.define(version: 20161018182557) do
 
   create_table "fill_ups", force: :cascade do |t|
     t.string   "check_no",                limit: 20
-    t.datetime "check_datetime",                                               null: false
+    t.datetime "fill_up_datetime",                                             null: false
     t.integer  "fuel_card_id"
     t.decimal  "quantity",                            precision: 6,  scale: 2, null: false
     t.decimal  "unit_price",                          precision: 15, scale: 2, null: false
     t.decimal  "total_vat",                           precision: 15, scale: 2, null: false
     t.integer  "waybill_id"
-    t.integer  "mileage"
+    t.integer  "odometer"
     t.integer  "vehicle_id"
     t.text     "comment"
     t.datetime "created_at",                                                   null: false
     t.datetime "updated_at",                                                   null: false
     t.integer  "product_id",                                                   null: false
-    t.integer  "check_status_id",                                              null: false
+    t.integer  "fill_up_status_id",                                            null: false
     t.string   "filling_station_address", limit: 255
     t.integer  "fuel_supplier_report_id"
-    t.index ["check_status_id"], name: "index_fill_ups_on_check_status_id", using: :btree
+    t.index ["fill_up_status_id"], name: "index_fill_ups_on_fill_up_status_id", using: :btree
     t.index ["fuel_card_id"], name: "index_fill_ups_on_fuel_card_id", using: :btree
     t.index ["fuel_supplier_report_id"], name: "index_fill_ups_on_fuel_supplier_report_id", using: :btree
     t.index ["product_id"], name: "index_fill_ups_on_product_id", using: :btree
@@ -385,7 +385,7 @@ ActiveRecord::Schema.define(version: 20161018182557) do
 
   add_foreign_key "engines", "engine_powers"
   add_foreign_key "engines", "fuel_brands"
-  add_foreign_key "fill_ups", "fill_up_statuses", column: "check_status_id"
+  add_foreign_key "fill_ups", "fill_up_statuses"
   add_foreign_key "fill_ups", "fuel_cards"
   add_foreign_key "fill_ups", "fuel_supplier_reports"
   add_foreign_key "fill_ups", "products"

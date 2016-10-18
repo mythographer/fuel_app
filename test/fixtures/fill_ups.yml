@@ -1,13 +1,13 @@
 one:
   check_no:
-  check_datetime: 2016-09-05 13:18:27
-  check_status: new
+  fill_up_datetime: 2016-09-05 13:18:27
+  fill_up_status: new
   fuel_card: strong_0123456789
   product: petrol_a95
   quantity: 9.99
   unit_price: 9.99
   total_vat: 9.99
   waybill: september_2016_one
-  mileage: 150
+  odometer: 150
   vehicle: one
   comment: check_no is blank

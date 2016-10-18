@@ -7,8 +7,8 @@ class FillUpTest < ActiveSupport::TestCase
 
   test 'responds to attributes' do
     assert_respond_to @fill_up, :check_no
-    assert_respond_to @fill_up, :check_datetime
-    assert_respond_to @fill_up, :check_status
+    assert_respond_to @fill_up, :fill_up_datetime
+    assert_respond_to @fill_up, :fill_up_status
     assert_respond_to @fill_up, :filling_station_address
     assert_respond_to @fill_up, :product
     assert_respond_to @fill_up, :fuel_card
@@ -16,7 +16,7 @@ class FillUpTest < ActiveSupport::TestCase
     assert_respond_to @fill_up, :unit_price
     assert_respond_to @fill_up, :total_vat
     assert_respond_to @fill_up, :waybill
-    assert_respond_to @fill_up, :mileage
+    assert_respond_to @fill_up, :odometer
     assert_respond_to @fill_up, :vehicle
     assert_respond_to @fill_up, :comment
   end
@@ -24,7 +24,7 @@ class FillUpTest < ActiveSupport::TestCase
   # Associations.
 
   test 'should belong to fill-up status' do
-    refl = FillUp.reflect_on_association :check_status
+    refl = FillUp.reflect_on_association :fill_up_status
     assert_not_nil refl
     assert_equal refl.macro, :belongs_to
     assert refl.options, {}
@@ -78,10 +78,10 @@ class FillUpTest < ActiveSupport::TestCase
       'is too long (maximum is 20 characters)'
   end
 
-  test 'check_datetime should be present' do
-    @fill_up.check_datetime = nil
+  test 'fill-up datetime should be present' do
+    @fill_up.fill_up_datetime = nil
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:check_datetime], "can't be blank"
+    assert_includes @fill_up.errors[:fill_up_datetime], "can't be blank"
   end
 
   test 'filling station address should not be too long' do
@@ -127,10 +127,10 @@ class FillUpTest < ActiveSupport::TestCase
     assert_includes @fill_up.errors[:total_vat], 'must be greater than 0.0'
   end
 
-  test 'mileage should be greater than 0' do
-    @fill_up.mileage = -1
+  test 'odometer reading should be greater than 0' do
+    @fill_up.odometer = -1
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:mileage], 'must be greater than 0'
+    assert_includes @fill_up.errors[:odometer], 'must be greater than 0'
   end
 
   test 'comment should not be too long' do
@@ -141,8 +141,8 @@ class FillUpTest < ActiveSupport::TestCase
   end
 
   test 'fill-up status should be present' do
-    @fill_up.check_status = nil
+    @fill_up.fill_up_status = nil
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:check_status], 'must exist'
+    assert_includes @fill_up.errors[:fill_up_status], 'must exist'
   end
 end

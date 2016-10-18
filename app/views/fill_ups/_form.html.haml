@@ -7,8 +7,8 @@
   = f.label :fuel_card_id
   = f.select :fuel_card_id, @fuel_card_list, { prompt: 'Select fuel card' }
 
-  = f.label :check_datetime
-  = f.datetime_field :check_datetime
+  = f.label :fill_up_datetime
+  = f.datetime_field :fill_up_datetime
 
   = f.label :filling_station_address
   = f.text_field :filling_station_address
@@ -25,8 +25,11 @@
   = f.label :total_vat
   = f.text_field :total_vat
 
-  = f.label :check_status_id
-  = f.select :check_status_id, @fill_up_status_list, { prompt: 'Select fill-up status' }
+  = f.label :fill_up_status_id
+  = f.select :fill_up_status_id, @fill_up_status_list, { prompt: 'Select fill-up status' }
+
+  = f.label :odometer
+  = f.text_field :odometer
 
   = f.label :comment
   = f.text_area :comment

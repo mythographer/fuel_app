@@ -55,10 +55,10 @@ class FillUpsController < ApplicationController
     end
 
     def fill_up_params
-      params.require(:fill_up).permit(:check_no, :check_datetime,
+      params.require(:fill_up).permit(:check_no, :fill_up_datetime,
          :fuel_card_id, :quantity, :unit_price, :comment, :product_id,
-         :check_status_id, :filling_station_address, :fuel_supplier_report_id,
-         :total_vat)
+         :fill_up_status_id, :filling_station_address, :fuel_supplier_report_id,
+         :total_vat, :odometer)
     end
 
     def set_fuel_card_list

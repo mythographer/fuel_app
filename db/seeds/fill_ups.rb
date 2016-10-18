@@ -6,8 +6,8 @@ waybills.each do |waybill|
   rand(1..30).times do |n|
     FillUp.create(
       check_no: Faker::Number.number(rand(10..20)),
-      check_datetime: Faker::Time.between(waybill.initial_date, waybill.final_date),
-      check_status_id: 1,
+      fill_up_datetime: Faker::Time.between(waybill.initial_date, waybill.final_date),
+      fill_up_status_id: 1,
       fuel_card: fuel_cards[rand(0...fuel_cards.size)],
       filling_station_address: Faker::Address.street_address,
       product: products[rand(0...products.size)],
@@ -15,7 +15,7 @@ waybills.each do |waybill|
       unit_price: unit_prices[rand(0...unit_prices.size)],
       total_vat: 1.0,
       waybill: waybill,
-      mileage: nil,
+      odometer: nil,
       vehicle: waybill.vehicle,
       comment: rand(0..9) == 5 ? Faker::Lorem.sentence : nil
     )

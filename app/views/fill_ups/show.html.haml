@@ -8,7 +8,7 @@
   = @fill_up.fuel_card.card_no
 %p
   %strong Timestamp:
-  = @fill_up.check_datetime.to_formatted_s(:db)
+  = @fill_up.fill_up_datetime.to_formatted_s(:db)
 %p
   %strong Filling Station Address:
   = @fill_up.filling_station_address
@@ -25,7 +25,7 @@
   %strong Amount:
   = number_to_currency(@fill_up.total_amount_vat_included, precision: 2, unit: '')
 %p
-  %strong ToDo: RegNo, Make and Model, Mileage, Driver Name, Comment etc.
+  %strong ToDo: License #, Make and Model, Odometer, Driver Name, Comment etc.
 
 %p
   = link_to 'Edit', edit_fill_up_path(@fill_up)

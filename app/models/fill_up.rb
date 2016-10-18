@@ -1,5 +1,5 @@
 class FillUp < ApplicationRecord
-  belongs_to :check_status, class_name: 'FillUpStatus'
+  belongs_to :fill_up_status
   belongs_to :fuel_card, optional: true
   belongs_to :product
   belongs_to :waybill, optional: true
@@ -7,12 +7,12 @@ class FillUp < ApplicationRecord
   belongs_to :fuel_supplier_report, optional: true
 
   validates :check_no, length: { maximum: 20 }
-  validates :check_datetime, presence: true
+  validates :fill_up_datetime, presence: true
   validates :filling_station_address, length: { maximum: 255 }
   validates :quantity, numericality: { greater_than: 0.0 }, presence: true
   validates :unit_price, numericality: { greater_than: 0.0 }, presence: true
   validates :total_vat, numericality: { greater_than: 0.0 }, presence: true
-  validates :mileage, numericality: { greater_than: 0 }, allow_nil: true
+  validates :odometer, numericality: { greater_than: 0 }, allow_nil: true
   validates :comment, length: { maximum: 255 }
 
 
@@ -35,8 +35,8 @@ class FillUp < ApplicationRecord
   end
   
   def self.all_with_joins
-    select(:id, :check_datetime, :filling_station_address, :quantity,
-           :unit_price, :mileage, :comment, :vehicle_id)
+    select(:id, :fill_up_datetime, :filling_station_address, :quantity,
+           :unit_price, :odometer, :comment, :vehicle_id)
       .joins(:fuel_card, :product)
       .left_outer_joins(vehicle: [:vehicle_registration, { vehicle_configuration:
               { vehicle_bodywork: { vehicle_model: :vehicle_trademark }}}])
