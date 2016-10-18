@@ -49,5 +49,5 @@ process_seeds'vehicle_inventories'
 # Waybills and filling station checks
 process_seeds'waybills'
 process_seeds'products'
-process_seeds'check_statuses'
+process_seeds'fill_up_statuses'
 process_seeds'checks'

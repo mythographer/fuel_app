@@ -23,7 +23,7 @@ class CheckTest < ActiveSupport::TestCase
 
   # Associations.
 
-  test 'should belong to check status' do
+  test 'should belong to fill-up status' do
     refl = Check.reflect_on_association :check_status
     assert_not_nil refl
     assert_equal refl.macro, :belongs_to
@@ -140,7 +140,7 @@ class CheckTest < ActiveSupport::TestCase
       'is too long (maximum is 255 characters)'
   end
 
-  test 'check status should be present' do
+  test 'fill-up status should be present' do
     @check.check_status = nil
     assert_not @check.valid?
     assert_includes @check.errors[:check_status], 'must exist'

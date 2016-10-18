@@ -1,4 +1,4 @@
-class CheckStatus < ApplicationRecord
+class FillUpStatus < ApplicationRecord
   has_many :checks
   
   validates :name, presence: true,

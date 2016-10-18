@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class CheckStatusTest < ActiveSupport::TestCase
+class FillUpStatusTest < ActiveSupport::TestCase
   def setup
-    @new = check_statuses :new
+    @new = fill_up_statuses :new
   end
 
   test 'should respond to name, description' do
@@ -13,7 +13,7 @@ class CheckStatusTest < ActiveSupport::TestCase
   # Associations.
 
   test 'should have zero or more checks' do
-    refl = CheckStatus.reflect_on_association :checks
+    refl = FillUpStatus.reflect_on_association :checks
     assert_not_nil refl
     assert_equal refl.macro, :has_many
     assert_equal refl.options, {}

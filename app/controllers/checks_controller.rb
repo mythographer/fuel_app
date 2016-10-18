@@ -2,7 +2,7 @@ class ChecksController < ApplicationController
   before_action :set_check, only: [:show, :edit, :update, :destroy]
   before_action :set_fuel_card_list, only: [:new, :edit, :create]
   before_action :set_product_list, only: [:new, :edit, :create]
-  before_action :set_check_status_list, only: [:new, :edit, :create]
+  before_action :set_fill_up_status_list, only: [:new, :edit, :create]
 
   def index
     @checks = Check.all_with_joins.page(params[:page])
@@ -69,7 +69,7 @@ class ChecksController < ApplicationController
       @product_list = helpers.product_list
     end
 
-    def set_check_status_list
-      @check_status_list = helpers.check_status_list
+    def set_fill_up_status_list
+      @fill_up_status_list = helpers.fill_up_status_list
     end
 end

@@ -1,5 +1,5 @@
 class Check < ApplicationRecord
-  belongs_to :check_status
+  belongs_to :check_status, class_name: 'FillUpStatus'
   belongs_to :fuel_card, optional: true
   belongs_to :product
   belongs_to :waybill, optional: true

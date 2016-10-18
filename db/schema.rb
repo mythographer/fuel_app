@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912074912) do
+ActiveRecord::Schema.define(version: 20161018172425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "check_statuses", force: :cascade do |t|
-    t.string   "name",        limit: 30, null: false
-    t.text     "description"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["name"], name: "index_check_statuses_on_name", unique: true, using: :btree
-  end
 
   create_table "checks", force: :cascade do |t|
     t.string   "check_no",                limit: 20
@@ -78,6 +70,14 @@ ActiveRecord::Schema.define(version: 20160912074912) do
     t.index ["capacity_l", "capacity_cc", "fuel_brand_id", "power", "engine_power_id"], name: "UK_engines", unique: true, using: :btree
     t.index ["engine_power_id"], name: "index_engines_on_engine_power_id", using: :btree
     t.index ["fuel_brand_id"], name: "index_engines_on_fuel_brand_id", using: :btree
+  end
+
+  create_table "fill_up_statuses", force: :cascade do |t|
+    t.string   "name",        limit: 30, null: false
+    t.text     "description"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["name"], name: "index_fill_up_statuses_on_name", unique: true, using: :btree
   end
 
   create_table "fleets", force: :cascade do |t|
@@ -383,7 +383,7 @@ ActiveRecord::Schema.define(version: 20160912074912) do
     t.index ["vehicle_id"], name: "index_waybills_on_vehicle_id", using: :btree
   end
 
-  add_foreign_key "checks", "check_statuses"
+  add_foreign_key "checks", "fill_up_statuses", column: "check_status_id"
   add_foreign_key "checks", "fuel_cards"
   add_foreign_key "checks", "fuel_supplier_reports"
   add_foreign_key "checks", "products"
