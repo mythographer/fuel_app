@@ -10,35 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018172425) do
+ActiveRecord::Schema.define(version: 20161018182557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "checks", force: :cascade do |t|
-    t.string   "check_no",                limit: 20
-    t.datetime "check_datetime",                                               null: false
-    t.integer  "fuel_card_id"
-    t.decimal  "quantity",                            precision: 6,  scale: 2, null: false
-    t.decimal  "unit_price",                          precision: 15, scale: 2, null: false
-    t.decimal  "total_vat",                           precision: 15, scale: 2, null: false
-    t.integer  "waybill_id"
-    t.integer  "mileage"
-    t.integer  "vehicle_id"
-    t.text     "comment"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
-    t.integer  "product_id",                                                   null: false
-    t.integer  "check_status_id",                                              null: false
-    t.string   "filling_station_address", limit: 255
-    t.integer  "fuel_supplier_report_id"
-    t.index ["check_status_id"], name: "index_checks_on_check_status_id", using: :btree
-    t.index ["fuel_card_id"], name: "index_checks_on_fuel_card_id", using: :btree
-    t.index ["fuel_supplier_report_id"], name: "index_checks_on_fuel_supplier_report_id", using: :btree
-    t.index ["product_id"], name: "index_checks_on_product_id", using: :btree
-    t.index ["vehicle_id"], name: "index_checks_on_vehicle_id", using: :btree
-    t.index ["waybill_id"], name: "index_checks_on_waybill_id", using: :btree
-  end
 
   create_table "cost_centres", force: :cascade do |t|
     t.string   "name_en",    limit: 30, null: false
@@ -78,6 +53,31 @@ ActiveRecord::Schema.define(version: 20161018172425) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["name"], name: "index_fill_up_statuses_on_name", unique: true, using: :btree
+  end
+
+  create_table "fill_ups", force: :cascade do |t|
+    t.string   "check_no",                limit: 20
+    t.datetime "check_datetime",                                               null: false
+    t.integer  "fuel_card_id"
+    t.decimal  "quantity",                            precision: 6,  scale: 2, null: false
+    t.decimal  "unit_price",                          precision: 15, scale: 2, null: false
+    t.decimal  "total_vat",                           precision: 15, scale: 2, null: false
+    t.integer  "waybill_id"
+    t.integer  "mileage"
+    t.integer  "vehicle_id"
+    t.text     "comment"
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.integer  "product_id",                                                   null: false
+    t.integer  "check_status_id",                                              null: false
+    t.string   "filling_station_address", limit: 255
+    t.integer  "fuel_supplier_report_id"
+    t.index ["check_status_id"], name: "index_fill_ups_on_check_status_id", using: :btree
+    t.index ["fuel_card_id"], name: "index_fill_ups_on_fuel_card_id", using: :btree
+    t.index ["fuel_supplier_report_id"], name: "index_fill_ups_on_fuel_supplier_report_id", using: :btree
+    t.index ["product_id"], name: "index_fill_ups_on_product_id", using: :btree
+    t.index ["vehicle_id"], name: "index_fill_ups_on_vehicle_id", using: :btree
+    t.index ["waybill_id"], name: "index_fill_ups_on_waybill_id", using: :btree
   end
 
   create_table "fleets", force: :cascade do |t|
@@ -383,14 +383,14 @@ ActiveRecord::Schema.define(version: 20161018172425) do
     t.index ["vehicle_id"], name: "index_waybills_on_vehicle_id", using: :btree
   end
 
-  add_foreign_key "checks", "fill_up_statuses", column: "check_status_id"
-  add_foreign_key "checks", "fuel_cards"
-  add_foreign_key "checks", "fuel_supplier_reports"
-  add_foreign_key "checks", "products"
-  add_foreign_key "checks", "vehicles"
-  add_foreign_key "checks", "waybills"
   add_foreign_key "engines", "engine_powers"
   add_foreign_key "engines", "fuel_brands"
+  add_foreign_key "fill_ups", "fill_up_statuses", column: "check_status_id"
+  add_foreign_key "fill_ups", "fuel_cards"
+  add_foreign_key "fill_ups", "fuel_supplier_reports"
+  add_foreign_key "fill_ups", "products"
+  add_foreign_key "fill_ups", "vehicles"
+  add_foreign_key "fill_ups", "waybills"
   add_foreign_key "fuel_brands", "fuel_types"
   add_foreign_key "fuel_cards", "fuel_card_brands"
   add_foreign_key "fuel_cards", "fuel_card_statuses"

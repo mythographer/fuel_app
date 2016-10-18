@@ -1,6 +1,6 @@
 class FuelSupplierReport < ApplicationRecord
   belongs_to :fuel_card_brand
-  has_many :checks
+  has_many :fill_ups
 
   validates :start_date, presence: true,
     date: { before_or_equal_to: Date.current,

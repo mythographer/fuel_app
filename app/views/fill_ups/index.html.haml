@@ -1,0 +1,56 @@
+%h1 Listing fill-ups
+
+%p= link_to 'New fill-up', new_fill_up_path
+
+= will_paginate @fill_ups
+
+%table.table.table-striped.table-hover.table-condensed
+  %thead
+    %tr
+      %th ID
+      %th Card No
+      %th Timestamp
+      %th Filling Station Address
+      %th Product Name
+      %th Quantity
+      %th Price
+      %th Amount
+      %th Mileage
+      %th License #
+      %th Make and Model
+      %th VIN
+      %th Driver Name
+      %th Waybill No
+      %th Cost Centre
+      %th ??? type
+      %th Comment
+      %th{colspan: 17}
+  %tbody
+    - @fill_ups.each do |fill_up|
+      %tr
+        %td= link_to fill_up.id, edit_fill_up_path(fill_up)
+        %td= fill_up.card_no
+        %td= fill_up.check_datetime.to_formatted_s(:db)
+        %td= fill_up.filling_station_address
+        %td= fill_up.product_name
+        %td= number_with_precision(fill_up.quantity, precision: 2)
+        %td= number_to_currency(fill_up.unit_price, precision: 2, unit: '')
+        %td= number_to_currency(fill_up.total_amount_vat_included, precision: 2, unit: '')
+        %td= fill_up.mileage
+        %td= fill_up.reg_no
+        %td
+          - if fill_up.vehicle_id.present?
+            = fill_up.vehicle_make + ' ' + fill_up.vehicle_model
+          - else
+            = ''
+        %td= fill_up.vin
+        %td= 'ToDo'
+        %td= 'ToDo'
+        %td= 'ToDo'
+        %td= 'ToDo'
+        %td= fill_up.comment
+        %td= link_to 'Show', fill_up_path(fill_up)
+        %td= link_to 'Destroy', fill_up_path(fill_up), method: :delete, |
+          data: { confirm: 'Are you sure?' }
+
+= will_paginate @fill_ups

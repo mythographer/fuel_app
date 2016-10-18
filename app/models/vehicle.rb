@@ -1,7 +1,7 @@
 class Vehicle < ApplicationRecord
   has_many :vehicle_registrations
   has_many :vehicle_inventories
-  has_many :checks
+  has_many :fill_ups
   has_many :waybills
 
   belongs_to :vehicle_configuration

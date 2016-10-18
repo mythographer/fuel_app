@@ -1,5 +1,5 @@
 class Waybill < ApplicationRecord
-  has_many :checks, dependent: :nullify
+  has_many :fill_ups, dependent: :nullify
   
   belongs_to :vehicle
 
@@ -14,8 +14,8 @@ class Waybill < ApplicationRecord
   validates :final_fuel, presence: true
   validates :comment, length: { maximum: 255 }
 
-  accepts_nested_attributes_for :checks, reject_if: :all_blank,
-    allow_destroy: true
+  #accepts_nested_attributes_for :fill_ups, reject_if: :all_blank,
+  #  allow_destroy: true
 
   scope :chronological, -> { order(id: :asc) }
 end

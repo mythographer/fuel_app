@@ -1,5 +1,5 @@
 class FillUpStatus < ApplicationRecord
-  has_many :checks
+  has_many :fill_ups
   
   validates :name, presence: true,
     length: { maximum: 30,

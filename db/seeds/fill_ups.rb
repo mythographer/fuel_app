@@ -4,7 +4,7 @@ products = Product.all
 unit_prices = [12.50, 13.49, 11.78, 21.99, 21.49, 18.99, 22.49]
 waybills.each do |waybill|
   rand(1..30).times do |n|
-    Check.create(
+    FillUp.create(
       check_no: Faker::Number.number(rand(10..20)),
       check_datetime: Faker::Time.between(waybill.initial_date, waybill.final_date),
       check_status_id: 1,

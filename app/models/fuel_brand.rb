@@ -1,6 +1,6 @@
 class FuelBrand < ApplicationRecord
   has_many :engines
-  has_many :checks
+  has_many :fill_ups
 
   belongs_to :fuel_type
 

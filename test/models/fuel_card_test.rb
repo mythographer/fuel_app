@@ -13,8 +13,8 @@ class FuelCardTest < ActiveSupport::TestCase
 
   # Associations.
 
-  test 'should have zero or more filling station checks' do
-    refl = FuelCard.reflect_on_association :checks
+  test 'should have zero or more filling station fill-ups' do
+    refl = FuelCard.reflect_on_association :fill_ups
     assert_not_nil refl
     assert_equal refl.macro, :has_many
     assert_equal refl.options, {}

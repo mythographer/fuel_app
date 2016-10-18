@@ -1,0 +1,32 @@
+%h1 Show fill-up
+
+%p
+  %strong ID:
+  = @fill_up.id
+%p
+  %strong Card No:
+  = @fill_up.fuel_card.card_no
+%p
+  %strong Timestamp:
+  = @fill_up.check_datetime.to_formatted_s(:db)
+%p
+  %strong Filling Station Address:
+  = @fill_up.filling_station_address
+%p
+  %strong Product Name:
+  = @fill_up.product.name_ua
+%p
+  %strong Quantity:
+  = number_with_precision(@fill_up.quantity, precision: 2)
+%p
+  %strong Price:
+  = number_to_currency(@fill_up.unit_price, precision: 2, unit: '')
+%p
+  %strong Amount:
+  = number_to_currency(@fill_up.total_amount_vat_included, precision: 2, unit: '')
+%p
+  %strong ToDo: RegNo, Make and Model, Mileage, Driver Name, Comment etc.
+
+%p
+  = link_to 'Edit', edit_fill_up_path(@fill_up)
+  = link_to 'Back', fill_ups_path

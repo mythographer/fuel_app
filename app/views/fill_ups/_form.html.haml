@@ -1,5 +1,5 @@
-= form_for check do |f|
-  = render partial: 'shared/error_messages', locals: { object: @check }
+= form_for fill_up do |f|
+  = render partial: 'shared/error_messages', locals: { object: fill_up }
 
   = f.label :id
   = f.text_field :id, disabled: true

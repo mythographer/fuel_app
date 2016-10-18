@@ -1,61 +1,61 @@
-class ChecksController < ApplicationController
-  before_action :set_check, only: [:show, :edit, :update, :destroy]
+class FillUpsController < ApplicationController
+  before_action :set_fill_up, only: [:show, :edit, :update, :destroy]
   before_action :set_fuel_card_list, only: [:new, :edit, :create]
   before_action :set_product_list, only: [:new, :edit, :create]
   before_action :set_fill_up_status_list, only: [:new, :edit, :create]
 
   def index
-    @checks = Check.all_with_joins.page(params[:page])
+    @fill_ups = FillUp.all_with_joins.page(params[:page])
   end
 
   def show
-    if @check.nil?
+    if @fill_up.nil?
       flash[:warning] = 'Fill-up was not found.'
-      redirect_to checks_url
+      redirect_to fill_ups_url
     end
   end
 
   def new
-    @check = Check.new
+    @fill_up = FillUp.new
   end
 
   def edit
   end
 
   def create
-    @check = Check.new check_params
+    @fill_up = FillUp.new fill_up_params
 
-    if @check.save
+    if @fill_up.save
       flash[:success] = 'Fill-up was created.'
-      redirect_to @check
+      redirect_to @fill_up
     else
       render :new
     end
   end
 
   def update
-    if @check.update check_params
+    if @fill_up.update fill_up_params
       flash[:success] = 'Fill-up was updated.'
-      redirect_to @check
+      redirect_to @fill_up
     else
       render :edit
     end
   end
 
   def destroy
-    @check.destroy
+    @fill_up.destroy
     flash[:info] = 'Fill-up was deleted.'
-    redirect_to checks_url
+    redirect_to fill_ups_url
   end
 
   private
 
-    def set_check
-      @check = Check.find_by(id: params[:id])
+    def set_fill_up
+      @fill_up = FillUp.find_by(id: params[:id])
     end
 
-    def check_params
-      params.require(:check).permit(:check_no, :check_datetime,
+    def fill_up_params
+      params.require(:fill_up).permit(:check_no, :check_datetime,
          :fuel_card_id, :quantity, :unit_price, :comment, :product_id,
          :check_status_id, :filling_station_address, :fuel_supplier_report_id,
          :total_vat)

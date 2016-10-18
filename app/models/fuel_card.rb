@@ -1,5 +1,5 @@
 class FuelCard < ApplicationRecord
-  has_many :checks
+  has_many :fill_ups
 
   belongs_to :fuel_card_brand
   belongs_to :fuel_card_status

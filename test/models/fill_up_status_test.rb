@@ -12,8 +12,8 @@ class FillUpStatusTest < ActiveSupport::TestCase
 
   # Associations.
 
-  test 'should have zero or more checks' do
-    refl = FillUpStatus.reflect_on_association :checks
+  test 'should have zero or more fill-ups' do
+    refl = FillUpStatus.reflect_on_association :fill_ups
     assert_not_nil refl
     assert_equal refl.macro, :has_many
     assert_equal refl.options, {}

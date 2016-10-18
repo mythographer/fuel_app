@@ -46,8 +46,8 @@ process_seeds'vehicle_registration_colors'
 process_seeds'vehicle_registrations'
 process_seeds'vehicle_inventories'
 
-# Waybills and filling station checks
+# Waybills and Fill-Ups
 process_seeds'waybills'
 process_seeds'products'
 process_seeds'fill_up_statuses'
-process_seeds'checks'
+process_seeds'fill_up'
