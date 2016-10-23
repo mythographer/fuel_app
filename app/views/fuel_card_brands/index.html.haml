@@ -8,13 +8,13 @@
   %thead
     %tr
       %th ID
-      %th Brand Name
+      %th Name
       %th{colspan: "2"}
   %tbody
     - @fuel_card_brands.each do |brand|
       %tr
         %td= link_to brand.id, edit_fuel_card_brand_path(brand)
-        %td= brand.brand_name
+        %td= brand.name
         %td= link_to 'Show', fuel_card_brand_path(brand)
         %td= link_to 'Destroy', fuel_card_brand_path(brand), method: :delete, |
             data: { confirm: 'Are you sure?' }

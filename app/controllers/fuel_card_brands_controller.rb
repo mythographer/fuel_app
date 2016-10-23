@@ -52,6 +52,6 @@ class FuelCardBrandsController < ApplicationController
     end
 
     def fuel_card_brand_params
-      params.require(:fuel_card_brand).permit(:brand_name)
+      params.require(:fuel_card_brand).permit(:name)
     end
 end

@@ -1,5 +1,5 @@
 module FuelCardBrandsHelper
   def fuel_card_brand_list
-    FuelCardBrand.order(brand_name: :asc).pluck(:brand_name, :id)
+    FuelCardBrand.order(name: :asc).pluck(:name, :id)
   end
 end
