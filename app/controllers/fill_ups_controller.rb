@@ -5,7 +5,7 @@ class FillUpsController < ApplicationController
   before_action :set_fill_up_status_list, only: [:new, :edit, :create]
 
   def index
-    @fill_ups = FillUp.all_with_joins.page(params[:page])
+    @fill_ups = FillUpListQuery.call.page(params[:page])
   end
 
   def show
