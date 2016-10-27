@@ -2,6 +2,7 @@ class FuelCardsController < ApplicationController
   before_action :set_fuel_card, only: [:show, :edit, :update, :destroy]
   before_action :set_fuel_card_brand_list, only: [:new, :edit, :create]
   before_action :set_fuel_card_status_list, only: [:new, :edit, :create]
+  autocomplete :fuel_card_brand, :name, full: true
 
   def index
     @fuel_cards = FuelCard.all_with_joins.page(params[:page])
@@ -54,8 +55,8 @@ class FuelCardsController < ApplicationController
     end
 
     def fuel_card_params
-      params.require(:fuel_card).permit(:card_no, :fuel_card_brand_id, :notes,
-                                        :fuel_card_status_id)
+      params.require(:fuel_card).permit(:card_no, :fuel_card_brand_name,
+                                        :notes, :fuel_card_status_id)
     end
 
     def set_fuel_card_brand_list

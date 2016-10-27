@@ -13,6 +13,14 @@ class FuelCard < ApplicationRecord
 
   scope :reverse_chronological, -> { order(id: :desc) }
 
+  def fuel_card_brand_name
+    fuel_card_brand.try(:name)
+  end
+  
+  def fuel_card_brand_name=(name)
+    self.fuel_card_brand = FuelCardBrand.find_by(name: name) if name.present?  
+  end
+
   def self.all_with_joins
     select(:id, :card_no, :notes)
       .joins(:fuel_card_brand)

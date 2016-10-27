@@ -1,5 +1,5 @@
 = form_for fuel_card do |f|
-  = render partial: 'shared/error_messages', locals: { object: @fuel_card }
+  = render partial: 'shared/error_messages', locals: { object: fuel_card }
 
   .form-group
     = f.label :id
@@ -10,9 +10,9 @@
     = f.text_field :card_no, size: 50, class: 'form-control'
 
   .form-group
-    = f.label :fuel_card_brand_id
-    = f.select :fuel_card_brand_id, @fuel_card_brand_list,
-      { prompt: 'Select brand' }, class: 'form-control'
+    = f.label :fuel_card_brand_name
+    = f.autocomplete_field :fuel_card_brand_name,
+      autocomplete_fuel_card_brand_name_fuel_cards_path, class: 'form-control'
 
   .form-group
     = f.label :fuel_card_status_id
