@@ -1,5 +1,5 @@
 class VehicleBodywork < ApplicationRecord
-  #has_many :vehicle_modifications
+  has_many :vehicle_configurations
   
   belongs_to :vehicle_model
   belongs_to :vehicle_mark_body_type

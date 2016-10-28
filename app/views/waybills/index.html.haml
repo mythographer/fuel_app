@@ -15,7 +15,7 @@
       %th Car configuration
       %th Driver Name
       - #todo - add columns
-      %th{colspan: 7}
+      %th{colspan: 2}
   %tbody
     - @waybills.each do |waybill|
       %tr
@@ -23,7 +23,7 @@
         %td= waybill.doc_no
         %td= waybill.initial_date
         %td= waybill.final_date
-        %td= waybill.vehicle.vehicle_registration.reg_no
+        %td= waybill.reg_no
         %td= #todo
         %td= #todo
         %td= link_to 'Show', waybill_path(waybill)

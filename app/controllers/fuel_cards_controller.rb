@@ -5,7 +5,7 @@ class FuelCardsController < ApplicationController
   autocomplete :fuel_card_brand, :name, full: true
 
   def index
-    @fuel_cards = FuelCard.all_with_joins.page(params[:page])
+    @fuel_cards = FuelCardListQuery.call.page(params[:page])
   end
 
   def show

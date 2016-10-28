@@ -1,6 +1,6 @@
 class VehicleModel < ApplicationRecord
   has_many :vehicle_bodyworks
-  has_many :vehicle_trim_level
+  has_many :vehicle_trim_levels
 
   belongs_to :vehicle_trademark
   belongs_to :vehicle_group

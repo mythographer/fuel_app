@@ -1,7 +1,7 @@
 # Trim levels are simply different versions of the same vehicle model
 # # with different features and equipment.
 class VehicleTrimLevel < ApplicationRecord
-  has_many :vehicle_modifications
+  has_many :vehicle_configurations
 
   belongs_to :vehicle_model
 
