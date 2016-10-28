@@ -12,7 +12,7 @@
   .form-group
     = f.label :fuel_card_brand_name
     = f.autocomplete_field :fuel_card_brand_name,
-      autocomplete_fuel_card_brand_name_fuel_cards_path, class: 'form-control'
+      autocomplete_fuel_card_brand_name_fuel_cards_path, class: 'form-control', 'min-length': 1
 
   .form-group
     = f.label :fuel_card_status_id
