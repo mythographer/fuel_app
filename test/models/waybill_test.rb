@@ -5,17 +5,12 @@ class WaybillTest < ActiveSupport::TestCase
     @waybill = waybills :september_2016_one
   end
 
-  test 'responds to doc_no, initial_date, final_date, vehicle,
-    initial_mileage, final_mileage, initial_fuel, final_fuel, comment' do
-    assert_respond_to @waybill, :doc_no
-    assert_respond_to @waybill, :initial_date
-    assert_respond_to @waybill, :final_date
-    assert_respond_to @waybill, :vehicle
-    assert_respond_to @waybill, :initial_mileage
-    assert_respond_to @waybill, :final_mileage
-    assert_respond_to @waybill, :initial_fuel
-    assert_respond_to @waybill, :final_fuel
-    assert_respond_to @waybill, :comment
+  test 'responds to attribute name' do
+    attributes = %i(doc_no initial_date final_date vehicle initial_mileage
+      final_mileage initial_fuel final_fuel comment)
+    attributes.each do |attr|
+      assert_respond_to @waybill, attr
+    end
   end
 
   # Associations.
@@ -96,5 +91,20 @@ class WaybillTest < ActiveSupport::TestCase
     @waybill.final_fuel = nil
     assert_not @waybill.valid?
     assert_includes @waybill.errors[:final_fuel], "can't be blank"
+  end
+
+  # Fixtures
+
+  test 'should be two records' do
+    assert_equal 2, Waybill.count
+  end
+
+  test 'should find records' do
+    h = { september_2016_one: '1549537',
+          september_2016_two: '1549538' }
+    h.each do |key, value|
+      record = waybills(key)
+      assert_equal value, record.doc_no
+    end
   end
 end

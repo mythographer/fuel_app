@@ -43,4 +43,18 @@ class FuelCardBrandTest < ActiveSupport::TestCase
     assert_not dup.valid?
     assert_includes dup.errors[:name], 'has already been taken'
   end
+
+  # Fixtures
+
+  test 'should be two records' do
+    assert_equal 2, FuelCardBrand.count
+  end
+
+  test 'should find records' do
+    h = { strong: 'First Brand', smart: 'Second Brand' }
+    h.each do |key, value|
+      record = fuel_card_brands(key)
+      assert_equal value, record.name
+    end
+  end
 end

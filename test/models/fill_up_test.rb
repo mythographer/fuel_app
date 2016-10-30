@@ -145,4 +145,14 @@ class FillUpTest < ActiveSupport::TestCase
     assert_not @fill_up.valid?
     assert_includes @fill_up.errors[:fill_up_status], 'must exist'
   end
+
+  # Fixtures
+
+  test 'should be one record' do
+    assert_equal 1, FillUp.count
+  end
+
+  test 'should find record' do
+    assert_equal '1234567890', @fill_up.check_no
+  end
 end

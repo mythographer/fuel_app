@@ -79,4 +79,15 @@ class FuelCardTest < ActiveSupport::TestCase
     assert_includes @fuel_card.errors[:notes],
       'is too long (maximum is 255 characters)'
   end
+
+  # Fixtures
+
+  test 'should be one record' do
+    assert_equal 1, FuelCard.count
+  end
+
+  test 'should find record' do
+    fuel_card = fuel_cards(:strong_0123456789)
+    assert_equal '0123456789', fuel_card.card_no
+  end
 end

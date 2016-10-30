@@ -50,4 +50,20 @@ class ProductTest < ActiveSupport::TestCase
     assert_not dup.valid?
     assert_includes dup.errors[:name_ua], 'has already been taken'
   end
+
+  # Fixtures
+
+  test 'should be three records' do
+    assert_equal 3, Product.count
+  end
+
+  test 'should find records' do
+    h = { petrol_a95: 'Бензин А-95',
+          diesel: 'Дизельне паливо',
+          car_wash: 'Мийка Програма №4 Люкс' }
+    h.each do |key, value|
+      record = products(key)
+      assert_equal value, record.name_ua
+    end
+  end
 end

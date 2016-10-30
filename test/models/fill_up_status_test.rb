@@ -6,8 +6,10 @@ class FillUpStatusTest < ActiveSupport::TestCase
   end
 
   test 'should respond to name, description' do
-    assert_respond_to @new, :name 
-    assert_respond_to @new, :description
+    attributes = %i(name description)
+    attributes.each do |attr|
+      assert_respond_to @new, attr
+    end
   end
 
   # Associations.
@@ -49,5 +51,19 @@ class FillUpStatusTest < ActiveSupport::TestCase
     assert_not @new.valid?
     assert_includes @new.errors[:description],
       '255 characters is the maximum allowed'
+  end
+
+  # Fixtures
+
+  test 'should be two records' do
+    assert_equal 2, FillUpStatus.count
+  end
+
+  test 'should find records' do
+    h = { new: 'новий' , handled: 'оброблений' }
+    h.each do |key, value|
+      record = fill_up_statuses(key)
+      assert_equal value, record.name
+    end
   end
 end

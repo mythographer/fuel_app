@@ -51,4 +51,18 @@ class FuelCardStatusTest < ActiveSupport::TestCase
     assert_includes @active.errors[:description],
       '255 characters is the maximum allowed'
   end
+
+  # Fixtures
+
+  test 'should be two records' do
+    assert_equal 2, FuelCardStatus.count
+  end
+
+  test 'should find records' do
+    h = { active: 'active', closed: 'closed' }
+    h.each do |key, value|
+      record = fuel_card_statuses(key)
+      assert_equal value, record.name_ua
+    end
+  end
 end
