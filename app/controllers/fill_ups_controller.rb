@@ -1,8 +1,8 @@
 class FillUpsController < ApplicationController
-  before_action :set_fill_up, only: [:show, :edit, :update, :destroy]
-  before_action :set_fuel_card_list, only: [:new, :edit, :create]
-  before_action :set_product_list, only: [:new, :edit, :create]
-  before_action :set_fill_up_status_list, only: [:new, :edit, :create]
+  before_action :set_fill_up, only: %i(show edit update destroy)
+  before_action :set_fuel_card_list, only: %i(new edit create)
+  before_action :set_product_list, only: %i(new edit create)
+  before_action :set_fill_up_status_list, only: %i(new edit create)
 
   def index
     @fill_ups = FillUpListQuery.call.page(params[:page])

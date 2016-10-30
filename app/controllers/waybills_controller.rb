@@ -1,5 +1,5 @@
 class WaybillsController < ApplicationController
-  before_action :set_waybill, only: [:show, :edit, :update, :destroy]
+  before_action :set_waybill, only: %i(show edit update destroy)
 
   def index
     @waybills = WaybillListQuery.call.page(params[:page])

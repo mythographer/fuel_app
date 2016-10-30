@@ -1,7 +1,7 @@
 class FuelCardsController < ApplicationController
-  before_action :set_fuel_card, only: [:show, :edit, :update, :destroy]
-  before_action :set_fuel_card_brand_list, only: [:new, :edit, :create]
-  before_action :set_fuel_card_status_list, only: [:new, :edit, :create]
+  before_action :set_fuel_card, only: %i(show edit update destroy)
+  before_action :set_fuel_card_brand_list, only: %i(new edit create)
+  before_action :set_fuel_card_status_list, only: %i(new edit create)
   autocomplete :fuel_card_brand, :name, full: true
 
   def index
