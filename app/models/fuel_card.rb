@@ -11,8 +11,6 @@ class FuelCard < ApplicationRecord
   validates :fuel_card_status, presence: true
   validates :notes, length: { maximum: 255 }, allow_nil: true
 
-  scope :reverse_chronological, -> { order(id: :desc) }
-
   def fuel_card_brand_name
     fuel_card_brand.try(:name)
   end

@@ -3,6 +3,6 @@ class WaybillListQuery
     Waybill.select(:id, :doc_no, :initial_date, :final_date)
       .joins(vehicle: [:vehicle_registration])
       .merge(VehicleRegistration.select('"vehicle_registrations"."reg_no"'))
-      .reverse_chronological
+      .order(id: :desc)
   end
 end

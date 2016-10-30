@@ -11,6 +11,6 @@ class FillUpListQuery
       .merge(Vehicle.select('"vehicles"."vin"'))
       .merge(VehicleModel.select('"vehicle_models"."name_en" as "vehicle_model"'))
       .merge(VehicleTrademark.select('"vehicle_trademarks"."name_en" as "vehicle_make"'))
-      .reverse_chronological
+      .order(id: :desc)
   end
 end

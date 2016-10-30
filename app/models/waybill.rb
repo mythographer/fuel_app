@@ -16,6 +16,4 @@ class Waybill < ApplicationRecord
 
   #accepts_nested_attributes_for :fill_ups, reject_if: :all_blank,
   #  allow_destroy: true
-
-  scope :reverse_chronological, -> { order(id: :desc) }
 end

@@ -16,8 +16,6 @@ class FillUp < ApplicationRecord
   validates :comment, length: { maximum: 255 }
 
 
-  scope :reverse_chronological, -> { order(id: :desc) }
-
   def total_amount_vat_included
     (unit_price * quantity).round(2)
   end
