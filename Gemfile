@@ -42,6 +42,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'rails-i18n', '~> 5.0.0'
+gem 'will-paginate-i18n'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
