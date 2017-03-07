@@ -1,20 +1,21 @@
-%h1 Show fuel card
+%h1= t('.header')
 
 %p
   %strong ID:
   = @fuel_card.id
 %p
-  %strong Card No:
+  %strong= @fuel_card.class.human_attribute_name(:card_no) + ':'
   = @fuel_card.card_no
 %p
-  %strong Brand Name:
+  %strong= @fuel_card.fuel_card_brand.model_name.human + '. ' + @fuel_card.fuel_card_brand.class.human_attribute_name(:name) + ':'
   = @fuel_card.fuel_card_brand.name
 %p
-  %strong Card Status:
+  %strong= @fuel_card.fuel_card_status.model_name.human + '. ' + @fuel_card.fuel_card_status.class.human_attribute_name(:name_ua) + ':'
   = @fuel_card.fuel_card_status.name_ua
 %p
-  %strong Notes:
+  %strong= @fuel_card.class.human_attribute_name(:notes) + ':'
   = @fuel_card.notes
 %p
-  = link_to 'Edit', edit_fuel_card_path(@fuel_card)
-  = link_to 'Back', fuel_cards_path
+  = link_to t(:edit), edit_fuel_card_path(@fuel_card)
+  |
+  = link_to t(:back), fuel_cards_path

@@ -1,5 +1,5 @@
--provide :button_text, 'Create waybill'
+-provide :button_text, t('.create')
 
-%h1 New waybill
+%h1= t('.header')
 
 = render 'form', waybill: @waybill

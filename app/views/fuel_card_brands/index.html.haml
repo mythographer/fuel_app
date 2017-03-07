@@ -1,6 +1,6 @@
-%h1 Listing fuel card brands
+%h1= t '.header'
 
-%p= link_to 'New Brand', new_fuel_card_brand_path
+%p= link_to t('.new'), new_fuel_card_brand_path
 
 = will_paginate @fuel_card_brands
 
@@ -8,15 +8,15 @@
   %thead
     %tr
       %th ID
-      %th Name
+      %th= @fuel_card_brands.human_attribute_name :name
       %th{colspan: "2"}
   %tbody
     - @fuel_card_brands.each do |brand|
       %tr
         %td= link_to brand.id, edit_fuel_card_brand_path(brand)
         %td= brand.name
-        %td= link_to 'Show', fuel_card_brand_path(brand)
-        %td= link_to 'Destroy', fuel_card_brand_path(brand), method: :delete, |
-            data: { confirm: 'Are you sure?' }
+        %td= link_to t(:show), fuel_card_brand_path(brand)
+        %td= link_to t(:destroy), fuel_card_brand_path(brand),
+          method: :delete, data: { confirm: t(:are_you_sure?) }
 
 = will_paginate @fuel_card_brands

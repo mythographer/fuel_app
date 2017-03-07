@@ -1,0 +1,100 @@
+uk:
+  show: "Показати"
+  edit: "Редагувати"
+  destroy: "Видалити"
+  back: "Назад"
+
+  are_you_sure?: "Ви впевнені?"
+
+  layouts:
+    header:
+      home: "Додому"
+      help: "Допомога"
+      log_in: "Увійти"
+      entities: "Сутності"
+      fuel_card_brands: "Бренди паливних карт"
+      fuel_cards: "Паливні карти"
+      fill_ups: "Заправки"
+      waybills: "Подорожні листи"
+  fuel_card_brands:
+    index:
+      header: "Список брендів паливних карт"
+      new: "Новий бренд"
+    new:
+      header: "Новий бренд паливної карти"
+      create: "Створити бренд паливної карти"
+    edit:
+      header: "Редагувати бренд паливної карти"
+      update: "Оновити бренд паливної карти"
+    show:
+      header: "Показати бренд паливної карти"
+  fuel_cards:
+    index:
+      header: "Список паливних карт"
+      new: "Нова паливна карта"
+    new:
+      header: "Нова паливна карта"
+      create: "Створити паливну карту"
+    edit:
+      header: "Редагувати паливну карту"
+      update: "Оновити паливну карту"
+    show:
+      header: "Показати паливну карту"
+  fill_ups:
+    index:
+      header: "Список заправок"
+      new: "Нова заправка"
+  waybills:
+    index:
+      header: "Список подорожніх листів"
+      new: "Новий подорожній лист"
+    new:
+      header: "Новий подорожній лист"
+      create: "Створити подорожній лист"
+    edit:
+      header: "Редагувати подорожній лист"
+      update: "Оновити подорожній лист"
+    show:
+      header: "Показати подорожній лист"
+
+  activerecord:
+    models:
+      fuel_card_brand: "Бренд паливної карти"
+      fuel_card: "Паливна карта"
+      fuel_card_status: "Статус паливної карти"
+      fill_up: "Заправка"
+      waybill: "Подорожній лист"
+      vehicle: "Автомобіль"
+      vehicle_registration: "Свідоцтво про реєстрацію автомобіля"
+    attributes:
+      fuel_card_brand:
+        name: "Назва"
+      fuel_card:
+        card_no: "Номер карти"
+        fuel_card_brand: "Бренд паливної карти"
+        fuel_card_status: "Статус паливної карти"
+        notes: "Примітки"
+      fuel_card_status:
+        name_ua: "Назва статусу"
+        description: "Опис статусу"
+      fill_up:
+        check_no: ""
+        fill_up_datetime: ""
+        quantity: ""
+        unit_price: ""
+      waybill:
+        doc_no: "Номер документа"
+        initial_date: "Початок"
+        final_date: "Закінчення"
+        initial_mileage: "Початковий пробіг, км"
+        final_mileage: "Кінцевий пробіг, км"
+        initial_fuel: "Кількість палива при виїзді, л"
+        final_fuel: "Кількість палива при поверненні, л"
+        comment: "Коментар"
+      vehicle_registration:
+        reg_no: "Номерний знак"
+
+        
+  time:
+    formats:
+      timestamp: "%d.%m.%Y %H:%M:%S"

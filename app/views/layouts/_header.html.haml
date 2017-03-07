@@ -3,18 +3,18 @@
     = link_to 'fuel app', root_path, id: 'logo'
     %nav
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to 'Home', root_path
-        %li= link_to 'Help', '#'
-        %li= link_to 'Log in', '#'
+        %li= link_to t('.home'), root_path
+        %li= link_to t('.help'), '#'
+        %li= link_to t('.log_in'), '#'
         %li.dropdown
           %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown'}
-            Action
+            = t('.entities')
             %span.caret
           %ul.dropdown-menu
-            %li= link_to 'Fuel card brands', fuel_card_brands_path
-            %li= link_to 'Fuel cards', fuel_cards_path
-            %li= link_to 'Fill-ups', fill_ups_path
-            %li= link_to 'Waybills', waybills_path
+            %li= link_to t('.fuel_card_brands'), fuel_card_brands_path
+            %li= link_to t('.fuel_cards'), fuel_cards_path
+            %li= link_to t('.fill_ups'), fill_ups_path
+            %li= link_to t('.waybills'), waybills_path
         %li.dropdown
           %a.dropdown-toggle{href: '#', 'data-toggle': 'dropdown'}
             %span.glyphicon.glyphicon-globe

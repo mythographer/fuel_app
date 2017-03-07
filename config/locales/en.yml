@@ -1,23 +1,100 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  show: "Show"
+  edit: "Edit"
+  destroy: "Destroy"
+  back: "Back"
+
+  are_you_sure?: "Are you sure?"
+
+  layouts:
+    header:
+      home: "Home"
+      help: "Help"
+      log_in: "Log in"
+      entities: "Entities"
+      fuel_card_brands: "Fuel card brands"
+      fuel_cards: "Fuel cards"
+      fill_ups: "Fill-ups"
+      waybills: "Waybills"
+  fuel_card_brands:
+    index:
+      header: "Listing fuel card brands"
+      new: "New Brand"
+    new:
+      header: "New fuel card brand"
+      create: "Create fuel card brand"
+    edit:
+      header: "Edit fuel card brand"
+      update: "Update fuel card brand"
+    show:
+      header: "Show fuel card brand"
+  fuel_cards:
+    index:
+      header: "Listing fuel cards"
+      new: "New fuel card"
+    new:
+      header: "New fuel card"
+      create: "Create fuel card"
+    edit:
+      header: "Edit fuel card"
+      update: "Update fuel card"
+    show:
+      header: "Show fuel card"
+  fill_ups:
+    index:
+      header: "Listing fill-ups"
+      new: "New fill-up"
+  waybills:
+    index:
+      header: "Listing waybills"
+      new: "New waybill"
+    new:
+      header: "New waybill"
+      create: "Create waybill"
+    edit:
+      header: "Edit waybill"
+      update: "Update waybill"
+    show:
+      header: "Show waybill"
+
+  activerecord:
+    models:
+      fuel_card_brand: "Fuel Card Brand"
+      fuel_card: "Fuel Card"
+      fuel_card_status: "Fuel Card Status"
+      fill_up: "Fill-up"
+      waybill: "Waybill"
+      vehicle: "Vehicle"
+      vehicle_registration: "Vehicle Registration Certificate"
+    attributes:
+      fuel_card_brand:
+        name: "Name"
+      fuel_card:
+        card_no: "Card No"
+        fuel_card_brand: "Fuel Card Brand"
+        fuel_card_status: "Fuel Card Status"
+        notes: "Notes"
+      fuel_card_status:
+        name_ua: "Status Name"
+        description: "Status Description"
+      fill_up:
+        check_no: ""
+        fill_up_datetime: ""
+        quantity: ""
+        unit_price: ""
+      waybill:
+        doc_no: "Document Number"
+        initial_date: "Initial Date"
+        final_date: "Final Date"
+        initial_mileage: "Initial Mileage"
+        final_mileage: "Final Mileage"
+        initial_fuel: "Initial Fuel"
+        final_fuel: "Final Fuel"
+        comment: "Comment"
+      vehicle_registration:
+        reg_no: "Plate No"
+
+
+  time:
+    formats:
+      timestamp: "%Y-%m-%d %H:%M:%S"

@@ -1,19 +1,19 @@
-%h1 Show waybill
+%h1= t('.header')
 
 %p
   %strong ID:
   = @waybill.id
 %p
-  %strong Waybill No:
+  %strong=  Waybill.human_attribute_name(:doc_no) + ':'
   = @waybill.doc_no
 %p
-  %strong Initial Date:
+  %strong= Waybill.human_attribute_name(:initial_date) + ':'
   = @waybill.initial_date
 %p
-  %strong Final Date:
+  %strong= Waybill.human_attribute_name(:final_date) + ':'
   = @waybill.final_date
 %p
-  %strong Car Reg. No:
+  %strong= VehicleRegistration.human_attribute_name(:reg_no) + ':'
   = @waybill.vehicle.vehicle_registration.reg_no
 %p
   %strong Car configuration
@@ -22,5 +22,6 @@
   %strong TODO: Add fields
 
 %p
-  = link_to 'Edit', edit_waybill_path(@waybill)
-  = link_to 'Back', waybills_path
+  = link_to t(:edit), edit_waybill_path(@waybill)
+  |
+  = link_to t(:back), waybills_path

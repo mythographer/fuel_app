@@ -1,8 +1,9 @@
--provide :button_text, 'Update waybill'
+-provide :button_text, t('.update')
 
-%h1 Edit waybill
+%h1= t('.header')
 
 = render 'form', waybill: @waybill
 
-= link_to 'Show', @waybill
-= link_to 'Back', waybills_path
+= link_to t(:show), @waybill
+|
+= link_to t(:back), waybills_path

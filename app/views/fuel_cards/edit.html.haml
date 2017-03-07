@@ -1,8 +1,9 @@
--provide :button_text, 'Update fuel card'
+-provide :button_text, t('.update')
 
-%h1 Edit fuel card
+%h1= t('.header')
 
 = render 'form', fuel_card: @fuel_card
 
-= link_to 'Show', @fuel_card
-= link_to 'Back', fuel_cards_path
+= link_to t(:show), @fuel_card
+|
+= link_to t(:back), fuel_cards_path

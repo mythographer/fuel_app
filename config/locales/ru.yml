@@ -1,0 +1,98 @@
+ru:
+  show: "Показать"
+  edit: "Редактировать"
+  destroy: "Удалить"
+  back: "Назад"
+
+  are_you_sure?: "Вы уверены?"
+
+  layouts:
+    header:
+      home: "Домой"
+      help: "Помощь"
+      log_in: "Войти"
+      entities: "Сущности"
+      fuel_card_brands: "Бренды топливных карт"
+      fuel_cards: "Топливные карты"
+      fill_ups: "Заправки"
+      waybills: "Путевые листы"
+  fuel_card_brands:
+    index:
+      header: "Список брендов топливных карт"
+      new: "Новый бренд"
+    new:
+      header: "Новый бренд топливной карты"
+      create: "Создать бренд топливной карты"
+    edit:
+      header: "Редактировать бренд топливной карты"
+      update: "Обновить бренд топливной карты"
+    show:
+      header: "Показать бренд топливной карты"
+  fuel_cards:
+    index:
+      header: "Список топливных карт"
+      new: "Новая топливная карта"
+    new:
+      header: "Новая топливная карта"
+      create: "Создать топливную карту"
+    edit:
+      header: "Редактировать топливную карту"
+      update: "Обновить топливную карту"
+    show:
+      header: "Показать топливную карту"
+  fill_ups:
+    index:
+      header: "Список заправок"
+      new: "Новая заправка"
+  waybills:
+    index:
+      header: "Список путевых листов"
+      new: "Новый путевой лист"
+    new:
+      header: "Новый путевой лист"
+      create: "Создать путевой лист"
+    edit:
+      header: "Редактировать путевой лист"
+      update: "Обновить путевой лист"
+    show:
+      header: "Показать путевой лист"
+
+  activerecord:
+    models:
+      fuel_card_brand: "Бренд топливной карты"
+      fuel_card: "Топливная карта"
+      fuel_card_status: "Статус топливной карты"
+      fill_up: "Заправка"
+      waybill: "Путевой лист"
+      vehicle: "Автомобиль"
+      vehicle_registration: "Свидетельство о регистрации автомобиля"
+    attributes:
+      fuel_card_brand:
+        name: "Название"
+      fuel_card:
+        card_no: "Номер карты"
+        fuel_card_brand: "Бренд топливной карты"
+        fuel_card_status: "Статус топливной карты"
+        notes: "Примечание"
+      fuel_card_status:
+        name_ua: "Название статуса"
+        description: "Описание статуса"
+      fill_up:
+        check_no: ""
+        fill_up_datetime: ""
+        quantity: ""
+        unit_price: ""
+      waybill:
+        doc_no: "Номер документа"
+        initial_date: "Начало"
+        final_date: "Окончание"
+        initial_mileage: "Начальный пробег, км"
+        final_mileage: "Конечный пробег, км"
+        initial_fuel: "Количество топлива при выезде, л"
+        final_fuel: "Количество топлива при возврате, л"
+      vehicle_registration:
+        reg_no: "Номерной знак"
+        
+  time:
+    formats:
+      timestamp: "%d.%m.%Y %H:%M:%S"

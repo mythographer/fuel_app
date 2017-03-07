@@ -1,13 +1,13 @@
 - provide(:title, @fuel_card_brand.name)
 
-%h1 Show fuel card brand
+%h1= t('.header')
 
 %p
   %strong ID:
   = @fuel_card_brand.id
 %p
-  %strong Name:
+  %strong= @fuel_card_brand.class.human_attribute_name(:name) + ':'
   = @fuel_card_brand.name
-  = link_to 'Edit', edit_fuel_card_brand_path(@fuel_card_brand)
-  |
-  = link_to 'Back', fuel_card_brands_path
+= link_to t(:edit), edit_fuel_card_brand_path(@fuel_card_brand)
+|
+= link_to t(:back), fuel_card_brands_path

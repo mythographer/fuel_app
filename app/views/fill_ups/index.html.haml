@@ -1,6 +1,6 @@
-%h1 Listing fill-ups
+%h1= t('.header')
 
-%p= link_to 'New fill-up', new_fill_up_path
+%p= link_to t('.new'), new_fill_up_path
 
 = will_paginate @fill_ups
 
@@ -30,12 +30,12 @@
       %tr
         %td= link_to fill_up.id, edit_fill_up_path(fill_up)
         %td= fill_up.card_no
-        %td= fill_up.fill_up_datetime.to_formatted_s(:db)
+        %td= l(fill_up.fill_up_datetime, format: :timestamp)
         %td= fill_up.filling_station_address
         %td= fill_up.product_name
         %td= number_with_precision(fill_up.quantity, precision: 2)
-        %td= number_to_currency(fill_up.unit_price, precision: 2, unit: '')
-        %td= number_to_currency(fill_up.total_amount_vat_included, precision: 2, unit: '')
+        %td= number_to_currency(fill_up.unit_price, precision: 2, format: '%n')
+        %td= number_to_currency(fill_up.total_amount_vat_included, precision: 2, format: '%n')
         %td= fill_up.odometer
         %td= fill_up.reg_no
         %td
@@ -49,8 +49,8 @@
         %td= 'ToDo'
         %td= 'ToDo'
         %td= fill_up.comment
-        %td= link_to 'Show', fill_up_path(fill_up)
-        %td= link_to 'Destroy', fill_up_path(fill_up), method: :delete, |
-          data: { confirm: 'Are you sure?' }
+        %td= link_to t(:show), fill_up_path(fill_up)
+        %td= link_to t(:destroy), fill_up_path(fill_up),
+          method: :delete, data: { confirm: t(:are_you_sure?) }
 
 = will_paginate @fill_ups

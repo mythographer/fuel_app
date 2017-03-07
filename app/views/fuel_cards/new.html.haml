@@ -1,5 +1,5 @@
--provide :button_text, 'Create fuel card'
+-provide :button_text, t('.create')
 
-%h1 New fuel card
+%h1= t('.header')
 
 = render 'form', fuel_card: @fuel_card

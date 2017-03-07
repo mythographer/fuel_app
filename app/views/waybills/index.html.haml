@@ -1,6 +1,6 @@
-%h1 Listing waybills
+%h1= t '.header'
 
-%p= link_to 'New waybill', new_waybill_path
+%p= link_to t('.new'), new_waybill_path
 
 = will_paginate @waybills
 
@@ -8,10 +8,10 @@
   %thead
     %tr
       %th ID
-      %th Waybill No
-      %th From
-      %th Till
-      %th Reg. No
+      %th= Waybill.human_attribute_name(:doc_no)
+      %th= Waybill.human_attribute_name(:initial_date)
+      %th= Waybill.human_attribute_name(:final_date)
+      %th= VehicleRegistration.human_attribute_name(:reg_no)
       %th Car configuration
       %th Driver Name
       - #todo - add columns
@@ -21,13 +21,13 @@
       %tr
         %td= link_to waybill.id, edit_waybill_path(waybill)
         %td= waybill.doc_no
-        %td= waybill.initial_date
-        %td= waybill.final_date
+        %td= l(waybill.initial_date)
+        %td= l(waybill.final_date)
         %td= waybill.reg_no
         %td= #todo
         %td= #todo
-        %td= link_to 'Show', waybill_path(waybill)
-        %td= link_to 'Destroy', waybill_path(waybill), method: :delete, |
-          data: { confirm: 'Are you sure?' }
+        %td= link_to t(:show), waybill_path(waybill)
+        %td= link_to t(:destroy), waybill_path(waybill),
+          method: :delete, data: { confirm: t(:are_you_sure?) }
 
 = will_paginate @waybills
