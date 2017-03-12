@@ -6,7 +6,7 @@ class FuelTypeTest < ActiveSupport::TestCase
   end
 
   test 'responds to name_en, name_ua, abbr_name' do
-    [:name_en, :name_ua, :abbr_name].each do |attr|
+    %i(name_en name_ua abbr_name).each do |attr|
       assert_respond_to @petrol, attr
     end
   end
@@ -15,63 +15,60 @@ class FuelTypeTest < ActiveSupport::TestCase
     assert @petrol.valid?
   end
 
-  test 'english name should be present' do
+  test ':name_en should be present' do
     @petrol.name_en = nil 
     assert_not @petrol.valid?
-    assert_includes @petrol.errors[:name_en], "can't be blank"
+    assert @petrol.errors.added? :name_en, :blank
   end
 
-  test 'english name should not be too long' do
+  test ':name_en should not be too long' do
     @petrol.name_en = 'a' * 11
     assert_not @petrol.valid?
-    assert_includes @petrol.errors[:name_en],
-      'is too long (maximum is 10 characters)'
+    assert @petrol.errors.added? :name_en, :too_long, count: 10
   end
 
-  test 'english name should be unique' do
+  test 'should reject duplicate :name_en' do
     petrol_dup = @petrol.dup
     petrol_dup.name_en.upcase!
     assert_not petrol_dup.valid?
-    assert_includes petrol_dup.errors[:name_en], 'has already been taken'
+    assert petrol_dup.errors.added? :name_en, :taken
   end
 
-  test 'ukrainian name should be present' do
+  test ':name_ua should be present' do
     @petrol.name_ua = nil
     assert_not @petrol.valid?
-    assert_includes @petrol.errors[:name_ua], "can't be blank"
+    assert @petrol.errors.added? :name_ua, :blank
   end
 
-  test 'ukrainian name should not be too long' do
+  test ':name_ua should not be too long' do
     @petrol.name_ua = 'a' * 11
     assert_not @petrol.valid?
-    assert_includes @petrol.errors[:name_ua],
-      'is too long (maximum is 10 characters)'
+    assert @petrol.errors.added? :name_ua, :too_long, count: 10
   end
 
-  test 'ukrainian name should be unique' do
+  test 'should reject duplicate :name_ua' do
     petrol_dup = @petrol.dup
     petrol_dup.name_ua.mb_chars.upcase!
     assert_not petrol_dup.valid?
-    assert_includes petrol_dup.errors[:name_ua], 'has already been taken'
+    assert petrol_dup.errors.added? :name_ua, :taken
   end
 
-  test 'abbreviation should be present' do
+  test ':abbr_name should be present' do
     @petrol.abbr_name = nil
     assert_not @petrol.valid?
-    assert_includes @petrol.errors[:abbr_name], "can't be blank"
+    assert @petrol.errors.added? :abbr_name, :blank
   end
 
-  test 'abbreviation should not be too long' do
+  test ':abbr_name should not be too long' do
     @petrol.abbr_name = 'a' * 2
     assert_not @petrol.valid?
-    assert_includes @petrol.errors[:abbr_name],
-      'is the wrong length (should be 1 character)'
+    assert @petrol.errors.added? :abbr_name, :wrong_length, count: 1
   end
 
-  test 'abbreviation should be unique' do
+  test 'should reject duplicate :abbr_name' do
     petrol_dup = @petrol.dup
     petrol_dup.abbr_name.upcase!
     assert_not petrol_dup.valid?
-    assert_includes petrol_dup.errors[:abbr_name], 'has already been taken'
+    assert petrol_dup.errors.added? :abbr_name, :taken
   end
 end

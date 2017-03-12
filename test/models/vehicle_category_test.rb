@@ -6,7 +6,7 @@ class VehicleCategoryTest < ActiveSupport::TestCase
   end
 
   test 'responds to name_en, name_ua' do
-    [:name_en, :name_ua].each do |attr|
+    %i(name_en name_ua).each do |attr|
       assert_respond_to @passenger, attr
     end
   end

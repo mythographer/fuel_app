@@ -6,19 +6,11 @@ class FillUpTest < ActiveSupport::TestCase
   end
 
   test 'responds to attributes' do
-    assert_respond_to @fill_up, :check_no
-    assert_respond_to @fill_up, :fill_up_datetime
-    assert_respond_to @fill_up, :fill_up_status
-    assert_respond_to @fill_up, :filling_station_address
-    assert_respond_to @fill_up, :product
-    assert_respond_to @fill_up, :fuel_card
-    assert_respond_to @fill_up, :quantity
-    assert_respond_to @fill_up, :unit_price
-    assert_respond_to @fill_up, :total_vat
-    assert_respond_to @fill_up, :waybill
-    assert_respond_to @fill_up, :odometer
-    assert_respond_to @fill_up, :vehicle
-    assert_respond_to @fill_up, :comment
+    %i(check_no fill_up_datetime fill_up_status filling_station_address product
+       fuel_card quantity unit_price total_vat waybill odometer vehicle
+       comment).each do |attr|
+      assert_respond_to @fill_up, attr
+    end
   end
 
   # Associations.
@@ -71,79 +63,76 @@ class FillUpTest < ActiveSupport::TestCase
     assert @fill_up.valid?
   end
 
-  test 'check number should not be too long' do
+  test ':check_no should not be too long' do
     @fill_up.check_no = '1' * 21
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:check_no],
-      'is too long (maximum is 20 characters)'
+    assert @fill_up.errors.added? :check_no, :too_long, count: 20
   end
 
-  test 'fill-up datetime should be present' do
+  test ':fill_up_datetime should be present' do
     @fill_up.fill_up_datetime = nil
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:fill_up_datetime], "can't be blank"
+    assert @fill_up.errors.added? :fill_up_datetime, :blank
   end
 
-  test 'filling station address should not be too long' do
+  test ':filling_station_address should not be too long' do
     @fill_up.filling_station_address = 'a' * 256
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:filling_station_address],
-      'is too long (maximum is 255 characters)'
+    assert @fill_up.errors.added? :filling_station_address, :too_long, count: 255
   end
 
-  test 'quantity should be present' do
+  test ':quantity should be present' do
     @fill_up.quantity = nil
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:quantity], "can't be blank"
+    assert @fill_up.errors.added? :quantity, :blank
   end
 
-  test 'quantity should be greater than 0.0' do
+  test ':quantity should be greater than 0.0' do
     @fill_up.quantity = -0.01
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:quantity], 'must be greater than 0.0'
+    assert @fill_up.errors.added? :quantity, :greater_than, count: 0.0
   end
 
-  test 'unit price should be present' do
+  test ':unit_price should be present' do
     @fill_up.unit_price = nil
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:unit_price], "can't be blank"
+    assert @fill_up.errors.added? :unit_price, :blank
   end
 
-  test 'unit price should be greater than 0.0' do
+  test ':unit_price should be greater than 0.0' do
     @fill_up.unit_price = -0.01
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:unit_price], 'must be greater than 0.0'
+    assert @fill_up.errors.added? :unit_price, :greater_than, count: 0.0
   end
 
-  test 'total VAT should be present' do
+  test ':total_vat should be present' do
     @fill_up.total_vat = nil
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:total_vat], "can't be blank"
+    assert @fill_up.errors.added? :total_vat, :blank
   end
 
-  test 'total VAT should be greater than 0.0' do
+  test ':total_vat should be greater than 0.0' do
     @fill_up.total_vat = -0.01
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:total_vat], 'must be greater than 0.0'
+    assert @fill_up.errors.added? :total_vat, :greater_than, count: 0.0
   end
 
-  test 'odometer reading should be greater than 0' do
+  test ':odometer reading should be greater than 0' do
     @fill_up.odometer = -1
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:odometer], 'must be greater than 0'
+    assert @fill_up.errors.added? :odometer, :greater_than, count: 0
   end
 
-  test 'comment should not be too long' do
+  test ':comment should not be too long' do
     @fill_up.comment = 'a' * 256
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:comment],
-      'is too long (maximum is 255 characters)'
+    assert @fill_up.errors.added? :comment, :too_long, count: 255
   end
 
-  test 'fill-up status should be present' do
+  test ':fill_up_status should be present' do
     @fill_up.fill_up_status = nil
     assert_not @fill_up.valid?
-    assert_includes @fill_up.errors[:fill_up_status], 'must exist'
+    assert @fill_up.errors.added? :fill_up_status, :required
   end
 
   # Fixtures

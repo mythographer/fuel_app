@@ -6,7 +6,7 @@ class VehicleStatusTest < ActiveSupport::TestCase
   end
 
   test 'responds to name_en, name_ua' do
-    [:name_en, :name_ua].each do |attr|
+    %i(name_en name_ua).each do |attr|
       assert_respond_to @new, attr
     end
   end
@@ -15,43 +15,41 @@ class VehicleStatusTest < ActiveSupport::TestCase
     assert @new.valid?
   end
 
-  test 'english name should be present' do
+  test ':name_en should be present' do
     @new.name_en = nil
     assert_not @new.valid?
-    assert_includes @new.errors[:name_en], "can't be blank"
+    assert @new.errors.added? :name_en, :blank
   end
 
-  test 'english name should not be too long' do
+  test ':name_en should not be too long' do
     @new.name_en = 'a' * 31
     assert_not @new.valid?
-    assert_includes @new.errors[:name_en],
-      'is too long (maximum is 30 characters)'
+    assert @new.errors.added? :name_en, :too_long, count: 30
   end
 
-  test 'english name should be unique' do
+  test 'should reject duplicate :name_en' do
     dup = @new.dup
     dup.name_en.upcase!
     assert_not dup.valid?
-    assert_includes dup.errors[:name_en], 'has already been taken'
+    assert dup.errors.added? :name_en, :taken
   end
 
-  test 'ukrainian name should be present' do
+  test ':name_ua should be present' do
     @new.name_ua = nil
     assert_not @new.valid?
-    assert_includes @new.errors[:name_ua], "can't be blank"
+    assert @new.errors.added? :name_ua, :blank
   end
 
-  test 'ukrainian name should not be too long' do
+  test ':name_ua should not be too long' do
     @new.name_ua = 'а' * 31
     assert_not @new.valid?
-    assert_includes @new.errors[:name_ua],
-      'is too long (maximum is 30 characters)'
+    assert @new.errors.added? :name_ua, :too_long, count: 30
   end
 
-  test 'ukrainian name should be unique' do
+  test 'should reject duplicate :name_ua' do
     dup = @new.dup
     dup.name_ua.mb_chars.upcase!
     assert_not dup.valid?
-    assert_includes dup.errors[:name_ua], 'has already been taken'
+    assert dup.errors.added? :name_ua, :taken
   end
 end

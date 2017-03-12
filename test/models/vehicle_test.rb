@@ -8,15 +8,11 @@ class VehicleTest < ActiveSupport::TestCase
   test 'responds to vin, vehicle_configuration, vehicle_registration,
     vehicle_trademark_color, metallic, fleet, vehicle_status, cost_centre,
     vehicle_inventory' do
-    assert_respond_to @vehicle, :vin 
-    assert_respond_to @vehicle, :vehicle_configuration
-    assert_respond_to @vehicle, :vehicle_registration
-    assert_respond_to @vehicle, :vehicle_trademark_color
-    assert_respond_to @vehicle, :metallic
-    assert_respond_to @vehicle, :fleet
-    assert_respond_to @vehicle, :vehicle_status
-    assert_respond_to @vehicle, :cost_centre
-    assert_respond_to @vehicle, :vehicle_inventory
+    %i(vin vehicle_configuration vehicle_registration vehicle_trademark_color
+      metallic fleet vehicle_status cost_centre
+      vehicle_inventory).each do |attr|
+      assert_respond_to @vehicle, attr
+    end
   end
 
   test 'should be valid' do
@@ -24,57 +20,57 @@ class VehicleTest < ActiveSupport::TestCase
     assert vehicles(:new_car).valid?
   end
 
-  test 'VIN can be nil' do
+  test ':vin can be nil' do
     @vehicle.vin = nil
     assert @vehicle.valid?
   end
 
-  test 'VIN should be entered in upper case' do
+  test ':vin should be entered in upper case' do
     @vehicle.vin.downcase!
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:vin], 'wrong VIN'
+    assert @vehicle.errors.added? :vin, 'wrong VIN'
   end
 
-  test 'VIN should not be too long' do
-    @vehicle.vin = '2FMZA51U0WBD539570000000000'
+  test ':vin should not be too long' do
+    @vehicle.vin = @vehicle.vin + '0' * 10
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:vin], 'wrong VIN'
+    assert @vehicle.errors.added? :vin, 'wrong VIN'
   end
 
-  test 'VIN should be unique' do
+  test 'should reject duplicate :vin' do
     car = @vehicle.dup
     assert_not car.valid?
-    assert_includes car.errors[:vin], 'has already been taken'
+    assert car.errors.added? :vin, 'has already been taken'
   end
 
-  test 'configuration should be present' do
+  test 'vehicle_configuration should be present' do
     @vehicle.vehicle_configuration = nil
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:vehicle_configuration], 'must exist'
+    assert @vehicle.errors.added? :vehicle_configuration, :required
   end
 
-  test 'trademark color should be present' do
+  test ':vehicle_trademark_color should be present' do
     @vehicle.vehicle_trademark_color = nil
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:vehicle_trademark_color], 'must exist'
+    assert @vehicle.errors.added? :vehicle_trademark_color, :required
   end
 
-  test 'metallic flag value should be present' do
+  test ':metallic should be present' do
     @vehicle.metallic = nil
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:metallic], 'is not included in the list'
+    assert @vehicle.errors.added? :metallic, :inclusion
   end
 
-  test 'status should be present' do
+  test ':vehicle_status should be present' do
     @vehicle.vehicle_status = nil
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:vehicle_status], 'must exist'
+    assert @vehicle.errors.added? :vehicle_status, :required
   end
 
-  test 'registration record should be unique' do
+  test 'should reject duplicate :vehicle_registration' do
     @vehicle.vehicle_registration = vehicles(:two).vehicle_registration
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:vehicle_registration], 'has already been taken'
+    assert @vehicle.errors.added? :vehicle_registration, :taken
   end
 
   test 'registration record can be nil' do
@@ -82,13 +78,13 @@ class VehicleTest < ActiveSupport::TestCase
     assert @vehicle.valid?
   end
 
-  test 'inventory record should be unique' do
+  test 'should reject duplicate :vehicle_inventory' do
     @vehicle.vehicle_inventory = vehicles(:two).vehicle_inventory
     assert_not @vehicle.valid?
-    assert_includes @vehicle.errors[:vehicle_inventory], 'has already been taken'
+    assert @vehicle.errors.added? :vehicle_inventory, :taken
   end
 
-  test 'inventory record can be nil' do
+  test ':vehicle_inventory record can be nil' do
     @vehicle.vehicle_inventory = nil
     assert @vehicle.valid?
   end

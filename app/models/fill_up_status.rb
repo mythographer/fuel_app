@@ -1,11 +1,7 @@
 class FillUpStatus < ApplicationRecord
   has_many :fill_ups
   
-  validates :name, presence: true,
-    length: { maximum: 30,
-              too_long: "%{count} characters is the maximum allowed" },
+  validates :name, presence: true, length: { maximum: 30 },
     uniqueness: { case_sensitive: false }
-  validates :description,
-    length: { maximum: 255,
-              too_long: "%{count} characters is the maximum allowed" }
+  validates :description, length: { maximum: 255 }
 end

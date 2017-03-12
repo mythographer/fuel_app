@@ -6,8 +6,7 @@ class FillUpStatusTest < ActiveSupport::TestCase
   end
 
   test 'should respond to name, description' do
-    attributes = %i(name description)
-    attributes.each do |attr|
+    %i(name description).each do |attr|
       assert_respond_to @new, attr
     end
   end
@@ -27,30 +26,29 @@ class FillUpStatusTest < ActiveSupport::TestCase
     assert @new.valid?
   end
 
-  test 'status name should be present' do
+  test ':name should be present' do
     @new.name = nil
     assert_not @new.valid?
-    assert_includes @new.errors[:name], "can't be blank"
+    assert @new.errors.added? :name, :blank
   end
 
-  test 'status name should not be too long' do
+  test ':name should not be too long' do
     @new.name = 'a' * 31
     assert_not @new.valid?
-    assert_includes @new.errors[:name], '30 characters is the maximum allowed'
+    assert @new.errors.added? :name, :too_long, count: 30
   end
 
-  test 'status name should be unique' do
+  test 'should reject duplicate :name' do
     dup = @new.dup
     dup.name.mb_chars.upcase!
     assert_not dup.valid?
-    assert_includes dup.errors[:name], 'has already been taken'
+    assert dup.errors.added? :name, :taken
   end
 
-  test 'description should not be too long' do
+  test ':description should not be too long' do
     @new.description = 'a' * 256
     assert_not @new.valid?
-    assert_includes @new.errors[:description],
-      '255 characters is the maximum allowed'
+    assert @new.errors.added? :description, :too_long, count: 255
   end
 
   # Fixtures

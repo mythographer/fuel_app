@@ -24,24 +24,23 @@ class FuelCardBrandTest < ActiveSupport::TestCase
     assert @strong.valid?
   end
 
-  test 'brand name should be present' do
+  test ':name should be present' do
     @strong.name = nil 
     assert_not @strong.valid?
-    assert_includes @strong.errors[:name], 'can\'t be blank'
+    assert @strong.errors.added? :name, :blank
   end
 
-  test 'brand name should not be too long' do
+  test ':name should not be too long' do
     @strong.name = 'a' * 51
     assert_not @strong.valid?
-    assert_includes @strong.errors[:name],
-      '50 characters is the maximum allowed'
+    assert @strong.errors.added? :name, :too_long, count: 50
   end
 
-  test 'brand name should be unique' do
+  test 'should reject duplicate :name' do
     dup = @strong.dup
     dup.name.upcase!
     assert_not dup.valid?
-    assert_includes dup.errors[:name], 'has already been taken'
+    assert dup.errors.added? :name, :taken
   end
 
   # Fixtures

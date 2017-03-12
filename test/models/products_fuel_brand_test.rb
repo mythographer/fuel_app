@@ -6,8 +6,9 @@ class ProductsFuelBrandTest < ActiveSupport::TestCase
   end
 
   test 'responds to product, fuel_brand' do
-    assert_respond_to @one, :product
-    assert_respond_to @one, :fuel_brand
+    %i(product fuel_brand).each do |attr|
+      assert_respond_to @one, attr
+    end
   end
 
   # Associations.
@@ -32,21 +33,21 @@ class ProductsFuelBrandTest < ActiveSupport::TestCase
     assert @one.valid?
   end
 
-  test 'product should be present' do
+  test ':product should be present' do
     @one.product = nil
     assert_not @one.valid?
-    assert_includes @one.errors[:product], 'must exist'
+    assert @one.errors.added? :product, :required
   end
 
-  test 'fuel brand should be present' do
+  test ':fuel_brand should be present' do
     @one.fuel_brand = nil
     assert_not @one.valid?
-    assert_includes @one.errors[:fuel_brand], 'must exist'
+    assert @one.errors.added? :fuel_brand, :required
   end
 
-  test 'product should be unique' do
+  test 'should reject duplicate :product' do
     dup = @one.dup
     assert_not dup.valid?
-    assert_includes dup.errors[:product], 'has already been taken'
+    assert dup.errors.added? :product, :taken
   end
 end

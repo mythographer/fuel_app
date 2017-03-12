@@ -7,8 +7,8 @@ class VehicleModelTest < ActiveSupport::TestCase
 
   test 'responds to vehicle_trademark, name_en, name_ua, vehicle_group, '\
     'wheel_count' do
-    [:vehicle_trademark, :name_en, :name_ua, :vehicle_group,
-     :wheel_count].each do |attr|
+    %i(vehicle_trademark name_en name_ua vehicle_group
+       wheel_count).each do |attr|
       assert_respond_to @ford_focus, attr
     end
   end

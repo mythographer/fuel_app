@@ -6,7 +6,7 @@ class VehicleInventoryTest < ActiveSupport::TestCase
   end
 
   test 'responds to vehicle, date_in, date_out' do
-    [:vehicle, :date_in, :date_out].each do |attr|
+    %i(vehicle date_in date_out).each do |attr|
       assert_respond_to @vehicle_inventory, attr
     end
   end

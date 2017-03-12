@@ -6,9 +6,8 @@ class WaybillTest < ActiveSupport::TestCase
   end
 
   test 'responds to attribute name' do
-    attributes = %i(doc_no initial_date final_date vehicle initial_mileage
-      final_mileage initial_fuel final_fuel comment)
-    attributes.each do |attr|
+    %i(doc_no initial_date final_date vehicle initial_mileage final_mileage
+       initial_fuel final_fuel comment).each do |attr|
       assert_respond_to @waybill, attr
     end
   end
@@ -31,66 +30,65 @@ class WaybillTest < ActiveSupport::TestCase
 
   # Validations.
 
-  test 'documen number should be present' do
+  test ':doc_no should be present' do
     @waybill.doc_no = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:doc_no], "can't be blank"
+    assert @waybill.errors.added? :doc_no, :blank
   end
 
-  test 'document number should not be too long' do
+  test ':doc_no should not be too long' do
     @waybill.doc_no = 'a' * 11
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:doc_no],
-      'is too long (maximum is 10 characters)'
+    assert @waybill.errors.added? :doc_no, :too_long, count: 10
   end
 
-  test 'document number should be unique' do
+  test ':doc_no should be unique' do
     dup = @waybill.dup
     dup.doc_no.upcase!
     assert_not dup.valid?
-    assert_includes dup.errors[:doc_no], 'has already been taken'
+    assert dup.errors.added? :doc_no, :taken
   end
 
-  test 'initial date should be present' do
+  test ':initial_date should be present' do
     @waybill.initial_date = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:initial_date], "can't be blank"
+    assert @waybill.errors.added? :initial_date, :blank
   end
 
-  test 'final date should be present' do
+  test ':final_date should be present' do
     @waybill.final_date = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:final_date], "can't be blank"
+    assert @waybill.errors.added? :final_date, :blank
   end
 
-  test 'vehicle should be present' do
+  test ':vehicle should be present' do
     @waybill.vehicle = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:vehicle], "can't be blank"
+    assert @waybill.errors.added? :vehicle, :required
   end
 
-  test 'initial mileage  should be present' do
+  test ':initial_mileage should be present' do
     @waybill.initial_mileage = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:initial_mileage], "can't be blank"
+    assert @waybill.errors.added? :initial_mileage, :blank
   end
 
-  test 'final mileage should be present' do
+  test ':final_mileage should be present' do
     @waybill.final_mileage = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:final_mileage], "can't be blank"
+    assert @waybill.errors.added? :final_mileage, :blank
   end
 
-  test 'initial fuel should be present' do
+  test ':initial_fuel should be present' do
     @waybill.initial_fuel = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:initial_fuel], "can't be blank"
+    assert @waybill.errors.added? :initial_fuel, :blank
   end
 
-  test 'final fuel should be present' do
+  test ':final_fuel should be present' do
     @waybill.final_fuel = nil
     assert_not @waybill.valid?
-    assert_includes @waybill.errors[:final_fuel], "can't be blank"
+    assert @waybill.errors.added? :final_fuel, :blank
   end
 
   # Fixtures

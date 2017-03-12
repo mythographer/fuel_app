@@ -6,8 +6,9 @@ class FuelCardStatusTest < ActiveSupport::TestCase
   end
 
   test 'should respond to name_ua, description' do
-    assert_respond_to @active, :name_ua
-    assert_respond_to @active, :description
+    %i(name_ua description).each do |attr|
+      assert_respond_to @active, attr
+    end
   end
 
   # Associations.
@@ -25,31 +26,29 @@ class FuelCardStatusTest < ActiveSupport::TestCase
     assert @active.valid?
   end
 
-  test 'status name should be present' do
+  test ':name_ua should be present' do
     @active.name_ua = nil
     assert_not @active.valid?
-    assert_includes @active.errors[:name_ua], "can't be blank"
+    assert @active.errors.added? :name_ua, :blank
   end
 
-  test 'status name should not be too long' do
+  test ':name_ua should not be too long' do
     @active.name_ua = 'a' * 31
     assert_not @active.valid?
-    assert_includes @active.errors[:name_ua],
-      '30 characters is the maximum allowed'
+    assert @active.errors.added? :name_ua, :too_long, count: 30
   end
 
-  test 'status name should be unique' do
+  test 'should reject duplicate :name_ua' do
     dup = @active.dup
     dup.name_ua.mb_chars.upcase!
     assert_not dup.valid?
-    assert_includes dup.errors[:name_ua], 'has already been taken'
+    assert dup.errors.added? :name_ua, :taken
   end
 
-  test 'description should not be too long' do
+  test ':description should not be too long' do
     @active.description = 'a' * 256
     assert_not @active.valid?
-    assert_includes @active.errors[:description],
-      '255 characters is the maximum allowed'
+    assert @active.errors.added? :description, :too_long, count: 255
   end
 
   # Fixtures

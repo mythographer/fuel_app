@@ -31,24 +31,23 @@ class ProductTest < ActiveSupport::TestCase
     assert @product.valid?
   end
 
-  test 'product namea should be present' do
+  test ':name_ua should be present' do
     @product.name_ua = nil
     assert_not @product.valid?
-    assert_includes @product.errors[:name_ua], "can't be blank"
+    assert @product.errors.added? :name_ua, :blank
   end
 
-  test 'product name should not be too long' do
+  test ':name_ua should not be too long' do
     @product.name_ua = 'a' * 256
     assert_not @product.valid?
-    assert_includes @product.errors[:name_ua],
-      '255 characters is the maximum allowed'
+    assert @product.errors.added? :name_ua, :too_long, count: 255
   end
 
-  test 'product name should be unique' do
+  test 'should reject duplicate :name_ua' do
     dup = @product.dup
     dup.name_ua.mb_chars.upcase!
     assert_not dup.valid?
-    assert_includes dup.errors[:name_ua], 'has already been taken'
+    assert dup.errors.added? :name_ua, :taken
   end
 
   # Fixtures

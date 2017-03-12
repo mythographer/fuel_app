@@ -6,9 +6,9 @@ class FuelBrandTest < ActiveSupport::TestCase
   end
 
   test 'responds to name_en, name_ua, fuel_type' do
-    assert_respond_to @A95, :name_en
-    assert_respond_to @A95, :name_ua
-    assert_respond_to @A95, :fuel_type
+    %i(name_en name_ua fuel_type).each do |attr|
+      assert_respond_to @A95, attr
+    end
   end
 
   # Validations.
@@ -17,49 +17,47 @@ class FuelBrandTest < ActiveSupport::TestCase
     assert @A95.valid?
   end
 
-  test 'english name should be present' do
+  test ':name_en should be present' do
     @A95.name_en = nil
     assert_not @A95.valid?
-    assert_includes @A95.errors[:name_en], "can't be blank"
+    assert @A95.errors.added? :name_en, :blank
   end
 
-  test 'english name should not be too long' do
+  test ':name_en should not be too long' do
     @A95.name_en = 'a' * 11
     assert_not @A95.valid?
-    assert_includes @A95.errors[:name_en],
-      'is too long (maximum is 10 characters)'
+    assert @A95.errors.added? :name_en, :too_long, count: 10
   end
 
-  test 'english name should be unique' do
+  test 'should reject duplicate :name_en' do
     other_brand = @A95.dup
     other_brand.name_en.upcase!
     assert_not other_brand.valid?
-    assert_includes other_brand.errors[:name_en], 'has already been taken'
+    assert other_brand.errors.added? :name_en, :taken
   end
 
-  test 'ukrainian name should be present' do
+  test ':name_ua should be present' do
     @A95.name_ua = nil 
     assert_not @A95.valid?
-    assert_includes @A95.errors[:name_ua], "can't be blank"
+    assert @A95.errors.added? :name_ua, :blank
   end
 
-  test 'ukrainian name should not be too long' do
+  test ':name_ua should not be too long' do
     @A95.name_ua = 'а' * 11
     assert_not @A95.valid?
-    assert_includes @A95.errors[:name_ua],
-      'is too long (maximum is 10 characters)'
+    assert @A95.errors.added? :name_ua, :too_long, count: 10
   end
 
-  test 'ukrainian name should be unique' do
+  test 'should reject duplicate :name_ua' do
     other_brand = @A95.dup
     other_brand.name_ua.mb_chars.upcase!
     assert_not other_brand.valid?
-    assert_includes other_brand.errors[:name_ua], 'has already been taken'
+    assert other_brand.errors.added? :name_ua, :taken
   end
 
-  test 'fuel type should be present' do
+  test ':fuel_type should be present' do
     @A95.fuel_type = nil
     assert_not @A95.valid?
-    assert_includes @A95.errors[:fuel_type], 'must exist'
+    assert @A95.errors.added? :fuel_type, :required
   end
 end

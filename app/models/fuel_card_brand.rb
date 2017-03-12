@@ -1,8 +1,6 @@
 class FuelCardBrand < ApplicationRecord
   has_many :fuel_cards
 
-  validates :name, presence: true,
-    length: { maximum: 50,
-              too_long: "%{count} characters is the maximum allowed" },
+  validates :name, length: { maximum: 50 }, presence: true,
     uniqueness: { case_sensitive: false }
 end
